@@ -1,0 +1,15 @@
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\MosleyAutoService.dll
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\MosleyAutoService.pdb
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\MosleyAutoService.xml
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\INMNativeUI.dll
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\Metadata.dll
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\ScriptHookVDotNet2.dll
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\INMNativeUI.pdb
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\Metadata.pdb
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\bin\Release\ScriptHookVDotNet2.xml
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Release\MosleyAutoService.vbprojResolveAssemblyReference.cache
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Release\MosleyAutoService.Resources.resources
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Release\MosleyAutoService.vbproj.GenerateResource.Cache
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Release\MosleyAutoService.dll
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Release\MosleyAutoService.xml
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Release\MosleyAutoService.pdb

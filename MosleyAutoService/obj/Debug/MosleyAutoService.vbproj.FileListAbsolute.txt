@@ -1,0 +1,4 @@
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Debug\MosleyAutoService.vbprojResolveAssemblyReference.cache
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Debug\MosleyAutoService.Resources.resources
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Debug\MosleyAutoService.vbproj.GenerateResource.Cache
+D:\Projects\Mods\MosleyAutoService\MosleyAutoService\obj\Debug\MosleyAutoService.xml
