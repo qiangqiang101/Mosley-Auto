@@ -95,10 +95,7 @@ Public Class MosleyAuto
                         End If
                     End If
                 End If
-                If isExiting Then
-                    Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
-                    SuspendKeys()
-                End If
+
 
                 _menuPool.ProcessMenus()
                 If Not veh = Nothing Then vehStats = GetVehicleStats(veh)

@@ -1,4 +1,5 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports GTA
 Imports GTA.Native
@@ -8,21 +9,24 @@ Imports Metadata
 Module MenuHelper
 
     Public QuitMenu, MainMenu, gmBodywork, gmBodyworkArena, gmEngine, gmInterior, gmPlate, gmLights, gmRespray, gmWheels, gmBumper, gmWheelType, gmNeonKits, gmWeapon As UIMenu
-    Public mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign, mOrnaments, mSeats,
-        mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, gmBikeWheels, gmHighEnd, gmLowrider, gmMuscle, gmOffroad, gmSport, gmSUV, gmTuner, mBennysOriginals, mBespoke, mTires, mHeadlights, mNeon, mNeonColor,
-    mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof, mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor,
-    mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor, mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor,
-    mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor, mTireSmoke, mTornadoC, mSBikeWheels, mCBikeWheels, mSHighEnd, mCHighEnd, mSLowrider, mCLowrider, mSMuscle, mCMuscle, mSOffroad, mCOffroad,
-    mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner, mUpgradeAW, mNitro As UIMenu
-    Public iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials, iAirFilter,
-        iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW, iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign,
-        iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates, iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad,
-        iSport, iSUV, iTuner, iBennys, iBespoke, iTires, iBPTires, iNeon, iTireSmoke, iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor,
-        iPrimaryMatteColor, iPrimaryPearlescentColor, iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iTornadoC, iNitro As UIMenuItem
-    Public giBodywork, giBodyworkArena, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels, giHighEndWheels, giDoor,
-        giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giFBumper, giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder,
-        giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts, iSBikeWheels, iCBikeWheels, iSHighEnd, iCHighEnd, iSLowrider, iCLowrider, iSMuscle, iCMuscle, iSOffroad, iCOffroad,
-    iSSport, iCSport, iSSUV, iCSUV, iSTuner, iCTuner, giTrailer, giWeapon, giArchCover, giRoof, giAirfilter, giOrnaments As UIMenuItem
+    Public mAerials, mSuspension, mArmor, mBrakes, mEngine, mTransmission, mFBumper, mRBumper, mSSkirt, mTrim, mEngineBlock, mAirFilter, mStruts, mColumnShifterLevers, mDashboard, mDialDesign,
+           mOrnaments, mSeats, mSteeringWheels, mTrimDesign, mPlateHolder, mVanityPlates, mNumberPlate, gmBikeWheels, gmHighEnd, gmLowrider, gmMuscle, gmOffroad, gmSport, gmSUV, gmTuner, mBennysOriginals,
+           mBespoke, mRacing, mStreet, mTires, mHeadlights, mNeon, mNeonColor, mArchCover, mExhaust, mFender, mRFender, mDoor, mFrame, mGrille, mHood, mHorn, mHydraulics, mLivery, mPlaques, mRoof,
+           mSpeakers, mSpoilers, mTank, mTrunk, mWindow, mTurbo, mTint, mLightsColor, mTrimColor, mRimColor, mPrimaryClassicColor, mPrimaryChromeColor, mPrimaryMetallicColor, mPrimaryMetalsColor,
+           mPrimaryMatteColor, mPrimaryPearlescentColor, mPrimaryColor, mSecondaryColor, mSecondaryClassicColor, mSecondaryChromeColor, mSecondaryMetallicColor, mSecondaryMetalsColor, mSecondaryMatteColor,
+           mTireSmoke, mTornadoC, mSBikeWheels, mCBikeWheels, mSHighEnd, mCHighEnd, mSLowrider, mCLowrider, mSMuscle, mCMuscle, mSOffroad, mCOffroad, mSSport, mCSport, mSSUV, mCSUV, mSTuner, mCTuner,
+           mUpgradeAW, mNitro As UIMenu
+    Public iRepair, iHorn, iArmor, iBrakes, iFBumper, iExhaust, iFender, iRollcage, iRoof, iTransmission, iEngine, iPlate, iLights, iTint, iTurbo, iRespray, iWheels, iSuspension, iEngineBlock, iAerials,
+           iAirFilter, iArchCover, iDoor, iFrame, iGrille, iHood, iHydraulics, iLivery, iPlaques, iRFender, iSpeaker, iSpoilers, iTank, iTrunk, iWindows, iTrim, iUpgrade, iUpgradeMod, iUpgradeAW,
+           iUpgradeAWV, iStruts, iTrimColor, iColumnShifterLevers, iDashboard, iDialDesign, iOrnaments, iSeats, iSteeringWheels, iTrimDesign, iRBumper, iSideSkirt, iRimColor, iPlateHolder, iVanityPlates,
+           iHeadlights, iDashboardColor, iNumberPlate, iBikeWheels, iHighEnd, iLowrider, iMuscle, iOffroad, iSport, iSUV, iTuner, iBennys, iBespoke, iRacing, iStreet, iTires, iBPTires, iNeon, iTireSmoke,
+           iNeonColor, iLightsColor, iPrimaryCol, iSecondaryCol, iPrimaryChromeColor, iPrimaryClassicColor, iPrimaryMetallicColor, iPrimaryMetalsColor, iPrimaryMatteColor, iPrimaryPearlescentColor,
+           iSecondaryChromeColor, iSecondaryClassicColor, iSecondaryMetallicColor, iSecondaryMetalsColor, iSecondaryMatteColor, iSecondaryPearlescentColor, iTornadoC, iNitro As UIMenuItem
+    Public giBodywork, giBodyworkArena, giEngine, giInterior, giPlate, giLights, giRespray, giWheels, giBumper, giWheelType, giTires, giNeonKits, giPrimaryCol, giSecondaryCol, giBikeWheels,
+           giHighEndWheels, giDoor, giLowriderWheels, giMuscleWheels, giOffroadWheels, giSportWheels, giSUVWheels, giTunerWheels, giBennysWheels, giBespokeWheels, giRacingWheels, giStreetWheels, giFBumper,
+           giRBumper, giSSkirt, giNumberPlate, giVanityPlate, giPlateHolder, giExhaust, giBrakes, giGrille, giHood, giHydraulics, giPlaques, giSpoilers, giTank, giTrunk, giStruts, iSBikeWheels,
+           iCBikeWheels, iSHighEnd, iCHighEnd, iSLowrider, iCLowrider, iSMuscle, iCMuscle, iSOffroad, iCOffroad, iSSport, iCSport, iSSUV, iCSUV, iSTuner, iCTuner, giTrailer, giWeapon, giArchCover, giRoof,
+           giAirfilter, giOrnaments As UIMenuItem
     Public iShifter, iFMudguard, iBSeat, iOilTank, iRMudguard, iFuelTank, iBeltDriveCovers, iBEngineBlock, iBAirFilter, iBTank As UIMenuItem
     Public giShifter, giFMudguard, giOilTank, giRMudguard, giFuelTank, giBeltDriveCovers, giBEngineBlock, giBAirFilter, giBTank As UIMenuItem
     Public mShifter, mFMudguard, mBSeat, mOilTank, mRMudguard, mFuelTank, mBeltDriveCovers, mBEngineBlock, mBAirFilter, mBTank, gmTrailer As UIMenu
@@ -95,6 +99,8 @@ Module MenuHelper
         RefreshChromeWheelsModMenuFor(mCTuner, iCTuner, VehicleMod.FrontWheels)
         RefreshLowriderDLCWheelsModMenuFor(mBennysOriginals, iBennys, VehicleMod.FrontWheels)
         RefreshLowriderDLCWheelsModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
+        RefreshLowriderDLCWheelsModMenuFor(mRacing, iRacing, VehicleMod.FrontWheels)
+        RefreshLowriderDLCWheelsModMenuFor(mStreet, iStreet, VehicleMod.FrontWheels)
         RefreshEnumModMenuFor(mRimColor, iRimColor, EnumTypes.VehicleColorRim)
         RefreshTyresMenu()
         RefreshRGBColorMenuFor(mTireSmoke, iTireSmoke, "Smoke")
@@ -273,196 +279,154 @@ Module MenuHelper
                 Case "glendale"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser"))
                     With iUpgradeAWV
-                        .SubString1 = "bruiser"
-                        .SubString2 = "bruiser_apoc"
-                        .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("bruiser", "bruiser_apoc", 1609000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser2"))
                     With iUpgradeAWV
-                        .SubString1 = "bruiser2"
-                        .SubString2 = "bruiser_scifi"
-                        .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("bruiser2", "bruiser_scifi", 1609000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("bruiser3"))
                     With iUpgradeAWV
-                        .SubString1 = "bruiser3"
-                        .SubString2 = "bruiser_cons"
-                        .SubInteger1 = 1609000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("bruiser3", "bruiser_cons", 1609000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "gargoyle"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike"))
                     With iUpgradeAWV
-                        .SubString1 = "deathbike"
-                        .SubString2 = "deathbike_apoc"
-                        .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("deathbike", "deathbike_apoc", 1269000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike2"))
                     With iUpgradeAWV
-                        .SubString1 = "deathbike2"
-                        .SubString2 = "deathbike_scifi"
-                        .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("deathbike2", "deathbike_scifi", 1269000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("deathbike3"))
                     With iUpgradeAWV
-                        .SubString1 = "deathbike3"
-                        .SubString2 = "deathbike_cons"
-                        .SubInteger1 = 1269000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("deathbike3", "deathbike_cons", 1269000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "dominator", "dominator2"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator4"))
                     With iUpgradeAWV
-                        .SubString1 = "dominator4"
-                        .SubString2 = "dominator_apoc"
-                        .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("dominator4", "dominator_apoc", 1132000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator5"))
                     With iUpgradeAWV
-                        .SubString1 = "dominator5"
-                        .SubString2 = "dominator_scifi"
-                        .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("dominator5", "dominator_scifi", 1132000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("dominator6"))
                     With iUpgradeAWV
-                        .SubString1 = "dominator6"
-                        .SubString2 = "dominator_cons"
-                        .SubInteger1 = 1132000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("dominator6", "dominator_cons", 1132000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "impaler"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler2"))
                     With iUpgradeAWV
-                        .SubString1 = "impaler2"
-                        .SubString2 = "impaler_apoc"
-                        .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("impaler2", "impaler_apoc", 1209500)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler3"))
                     With iUpgradeAWV
-                        .SubString1 = "impaler3"
-                        .SubString2 = "impaler_scifi"
-                        .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("impaler3", "impaler_scifi", 1209500)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("impaler4"))
                     With iUpgradeAWV
-                        .SubString1 = "impaler4"
-                        .SubString2 = "impaler_cons"
-                        .SubInteger1 = 1209500
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("impaler4", "impaler_cons", 1209500)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "issi3"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi4"))
                     With iUpgradeAWV
-                        .SubString1 = "issi4"
-                        .SubString2 = "issi_apoc"
-                        .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("issi4", "issi_apoc", 1089000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi5"))
                     With iUpgradeAWV
-                        .SubString1 = "issi5"
-                        .SubString2 = "issi_scifi"
-                        .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("issi5", "issi_scifi", 1089000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("issi6"))
                     With iUpgradeAWV
-                        .SubString1 = "issi6"
-                        .SubString2 = "issi_cons"
-                        .SubInteger1 = 1089000
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("issi6", "issi_cons", 1089000)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "ratloader", "ratloader2"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster3"))
                     With iUpgradeAWV
-                        .SubString1 = "monster3"
-                        .SubString2 = "sasquatch_apoc"
-                        .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("monster3", "sasquatch_apoc", 1530875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster4"))
                     With iUpgradeAWV
-                        .SubString1 = "monster4"
-                        .SubString2 = "sasquatch_scifi"
-                        .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("monster4", "sasquatch_scifi", 1530875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("monster5"))
                     With iUpgradeAWV
-                        .SubString1 = "monster5"
-                        .SubString2 = "sasquatch_cons"
-                        .SubInteger1 = 1530875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("monster5", "sasquatch_cons", 1530875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                 Case "slamvan", "slamvan2", "slamvan3"
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan4"))
                     With iUpgradeAWV
-                        .SubString1 = "slamvan4"
-                        .SubString2 = "slamvan_apoc"
-                        .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("slamvan4", "slamvan_apoc", 1321875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan5"))
                     With iUpgradeAWV
-                        .SubString1 = "slamvan5"
-                        .SubString2 = "slamvan_scifi"
-                        .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("slamvan5", "slamvan_scifi", 1321875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
                     iUpgradeAWV = New UIMenuItem(Game.GetGXTEntry("slamvan6"))
                     With iUpgradeAWV
-                        .SubString1 = "slamvan6"
-                        .SubString2 = "slamvan_cons"
-                        .SubInteger1 = 1321875
-                        Dim price As String = "$" & .SubInteger1
+                        .Tag = New ArenaWarVehicle("slamvan6", "slamvan_cons", 1321875)
+                        Dim price As String = $"${CType(.Tag, ArenaWarVehicle).Price}"
                         .SetRightLabel(price)
                     End With
                     mUpgradeAW.AddItem(iUpgradeAWV)
@@ -560,16 +524,14 @@ Module MenuHelper
                 item = New UIMenuItem(LocalizedT5RoofName(i))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                    .SubInteger1 = i
                     If veh.GetLivery2 = i Then
-                        item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(i, 0)
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value
-                            item.SetRightLabel(price)
-                            .SubInteger2 = 200 * ii
+                            .SetRightLabel($"${200 * ii}")
+                            .Tag = New ModClass(i, 200 * ii)
                         End If
                     End If
                 End With
@@ -588,16 +550,16 @@ Module MenuHelper
                 item = New UIMenuItem(GetLocalizedModName(i, veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                    .SubInteger1 = i
                     If veh.GetMod(vehmod) = i Then
-                        item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(i, 0)
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim value As Integer = 200 * ii
-                            Dim price As String = "$" & value
-                            item.SetRightLabel(price)
-                            .SubInteger2 = 200 * ii
+                            .SetRightLabel($"${200 * ii}")
+                            .Tag = New ModClass(i, 200 * ii)
+                        Else
+                            .Tag = New ModClass(i, 0)
                         End If
                     End If
                 End With
@@ -616,20 +578,23 @@ Module MenuHelper
             item = New UIMenuItem(LocalizedModTypeName(vehmod, True))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                .SubInteger1 = 0
-                If Not veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Not veh.IsToggleModOn(vehmod) Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(0, 0)
+                Else
+                    .Tag = New ModClass(0, 0)
+                End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(LocalizedModTypeName(vehmod))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                .SubInteger1 = 1
                 If veh.IsToggleModOn(vehmod) Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(1, 0)
                 Else
-                    Dim price As String = "$" & 1000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 1000
+                    .SetRightLabel($"${1000}")
+                    .Tag = New ModClass(1, 1000)
                 End If
             End With
             menu.AddItem(item)
@@ -647,204 +612,179 @@ Module MenuHelper
             item = New UIMenuItem(Game.GetGXTEntry("CMOD_LGT_0"))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_LGT_0")
-                .SubInteger1 = 0
-                .SubInteger3 = 255
-                If Not veh.IsToggleModOn(vehmod) Then item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If Not veh.IsToggleModOn(vehmod) Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(False, 255, 0)
+                Else
+                    .Tag = New ToggleModClass(False, 255, 0)
+                End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(LocalizedModTypeName(vehmod))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                .SubInteger1 = 1
-                .SubInteger3 = 255
-                If veh.IsToggleModOn(vehmod) Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.IsToggleModOn(vehmod) AndAlso veh.GetXenonHeadlightsColor = 255 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 255, 0)
                 Else
-                    Dim price As String = "$" & 1000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 1000
+                    .SetRightLabel($"${1000}")
+                    .Tag = New ToggleModClass(True, 255, 1000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_9vtlzex")) 'White
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_9vtlzex")
-                .SubInteger1 = 1
-                .SubInteger3 = 0
                 If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 0, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 0, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_9vtlzey")) 'Blue
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_9vtlzey")
-                .SubInteger1 = 1
-                .SubInteger3 = 1
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 1 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 1, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 1, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_9vtlzez")) 'Electric Blue
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_9vtlzez")
-                .SubInteger1 = 1
-                .SubInteger3 = 2
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 2 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 2, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 2, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1p")) 'Mint Green
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1p")
-                .SubInteger1 = 1
-                .SubInteger3 = 3
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 3 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 3, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 3, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1q")) 'Lime Green
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1q")
-                .SubInteger1 = 1
-                .SubInteger3 = 4
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 4 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 4, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 4, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1r")) 'Yellow
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1r")
-                .SubInteger1 = 1
-                .SubInteger3 = 5
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 5 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 5, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 5, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1s")) 'Golden Shower
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1s")
-                .SubInteger1 = 1
-                .SubInteger3 = 6
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 6 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 6, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 6, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_8gbxm1t")) 'Orange
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67le")
-                .SubInteger1 = 1
-                .SubInteger3 = 7
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 7 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 7, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 7, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67le")) 'Red
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_8gbxm1t")
-                .SubInteger1 = 1
-                .SubInteger3 = 8
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 8 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 8, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 8, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67lg")) 'Pony Pink
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67lg")
-                .SubInteger1 = 1
-                .SubInteger3 = 9
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 9 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 9, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 9, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67lf")) 'Hot Pink
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67lf")
-                .SubInteger1 = 1
-                .SubInteger3 = 10
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 10 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 10, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 10, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67lh")) 'Blacklight
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67lh")
-                .SubInteger1 = 1
-                .SubInteger3 = 11
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 11 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 11, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 11, 3000)
                 End If
             End With
             menu.AddItem(item)
             item = New UIMenuItem(Game.GetGXTEntry("collision_7jh67li")) 'Purple
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_7jh67li")
-                .SubInteger1 = 1
-                .SubInteger3 = 12
-                If veh.GetXenonHeadlightsColor = 0 Then
-                    item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If veh.GetXenonHeadlightsColor = 12 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ToggleModClass(True, 12, 0)
                 Else
-                    Dim price As String = "$" & 3000
-                    item.SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ToggleModClass(True, 12, 3000)
                 End If
             End With
             menu.AddItem(item)
@@ -929,16 +869,16 @@ Module MenuHelper
 
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                    .SubInteger1 = i
                     If veh.GetMod(vehmod) = i Then
-                        item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(i, 0)
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
-                            Dim value As Integer = 2000 * ii
-                            Dim price As String = "$" & value
-                            item.SetRightLabel(price)
-                            .SubInteger2 = 2000 * ii
+                            .SetRightLabel($"${2000 * ii}")
+                            .Tag = New ModClass(i, 2000 * ii)
+                        Else
+                            .Tag = New ModClass(i, 0)
                         End If
                     End If
                 End With
@@ -957,21 +897,43 @@ Module MenuHelper
             iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_ARM_0"))
             With iNitro
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                .SubInteger1 = CInt(False)
-                If Not veh.GetBool(nitroMod) Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                .Tag = New ModClass(0, 0)
+                If veh.GetInt(nitroMod) = 0 Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
             End With
             mNitro.AddItem(iNitro)
-            iNitro = New UIMenuItem(Game.GetGXTEntry("collision_57fffph")) 'Upgrade 100%
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_BOS_1")) 'Upgrade 20%
             With iNitro
-                If .Text = "NULL" Then .Text = Game.GetGXTEntry("collision_57fffph")
-                .SubInteger1 = CInt(True)
-                If veh.GetBool(nitroMod) Then
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_BOS_1")
+                If veh.GetInt(nitroMod) = 1 Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(1, 0)
                 Else
-                    Dim value As Integer = 30000
-                    Dim price As String = $"${value}"
-                    .SetRightLabel(price)
-                    .SubInteger2 = 30000
+                    .SetRightLabel($"${10000}")
+                    .Tag = New ModClass(1, 10000)
+                End If
+            End With
+            mNitro.AddItem(iNitro)
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_BOS_2")) 'Upgrade 60%
+            With iNitro
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_BOS_2")
+                If veh.GetInt(nitroMod) = 2 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(2, 0)
+                Else
+                    .SetRightLabel($"${20000}")
+                    .Tag = New ModClass(2, 20000)
+                End If
+            End With
+            mNitro.AddItem(iNitro)
+            iNitro = New UIMenuItem(Game.GetGXTEntry("CMOD_BOS_3")) 'Upgrade 100%
+            With iNitro
+                If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_BOS_3")
+                If veh.GetInt(nitroMod) = 3 Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(3, 0)
+                Else
+                    .SetRightLabel($"${30000}")
+                    .Tag = New ModClass(3, 30000)
                 End If
             End With
             mNitro.AddItem(iNitro)
@@ -1057,14 +1019,12 @@ Module MenuHelper
                     For Each enumItem As NumberPlateType In enumArray
                         item = New UIMenuItem(LocalizedLicensePlate(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.NumberPlateType = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 200
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 200
+                                item.SetRightLabel($"${200}")
+                                .Tag = New ModClass(enumItem, 200)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1074,14 +1034,12 @@ Module MenuHelper
                     For Each enumItem As VehicleWindowTint In enumArray
                         item = New UIMenuItem(LocalizedWindowsTint(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.WindowTint = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1091,14 +1049,12 @@ Module MenuHelper
                     For Each enumItem As VehicleColor In enumArray
                         item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.PrimaryColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1108,14 +1064,12 @@ Module MenuHelper
                     For Each enumItem As VehicleColor In enumArray
                         item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.SecondaryColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1125,14 +1079,12 @@ Module MenuHelper
                     For Each enumItem As VehicleColor In enumArray
                         item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.PearlescentColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1142,14 +1094,12 @@ Module MenuHelper
                     For Each enumItem As VehicleColor In enumArray
                         item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.TrimColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1159,14 +1109,12 @@ Module MenuHelper
                     For Each enumItem As VehicleColor In enumArray
                         item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.DashboardColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1176,14 +1124,12 @@ Module MenuHelper
                     For Each enumItem As VehicleColor In enumArray
                         item = New UIMenuItem(GetLocalizedColorName(enumItem))
                         With item
-                            .SubInteger1 = enumItem
                             If veh.RimColor = enumItem Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(enumItem, 0)
                             Else
-                                Dim value As Integer = 2000
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger2 = 2000
+                                item.SetRightLabel($"${2000}")
+                                .Tag = New ModClass(enumItem, 2000)
                             End If
                         End With
                         menu.AddItem(item)
@@ -1239,10 +1185,8 @@ Module MenuHelper
                 If Not veh.CanTiresBurst Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
                 Else
-                    Dim value As Integer = 4000
-                    Dim price As String = $"${value}"
-                    .SetRightLabel(price)
-                    .SubInteger2 = 4000
+                    .SetRightLabel($"${4000}")
+                    .Tag = 4000
                 End If
             End With
             gmWheels.AddItem(iBPTires)
@@ -1289,6 +1233,12 @@ Module MenuHelper
                     giBespokeWheels = New UIMenuItem(GetLocalizedWheelTypeName(9)) 'Benny's Bespoke
                     gmWheelType.AddItem(giBespokeWheels)
                     gmWheelType.BindMenuToItem(mBespoke, giBespokeWheels)
+                    giRacingWheels = New UIMenuItem(GetLocalizedWheelTypeName(10))
+                    gmWheelType.AddItem(giRacingWheels)
+                    gmWheelType.BindMenuToItem(mRacing, giRacingWheels)
+                    giStreetWheels = New UIMenuItem(GetLocalizedWheelTypeName(11))
+                    gmWheelType.AddItem(giStreetWheels)
+                    gmWheelType.BindMenuToItem(mStreet, giStreetWheels)
             End Select
 
             gmWheelType.RefreshIndex()
@@ -1322,18 +1272,19 @@ Module MenuHelper
                 item = New UIMenuItem(GetLocalizedModName(i, veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                    .SubInteger1 = i
                     If veh.GetMod(vehmod) = i Then
                         item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(i, 0)
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
                             Dim price As String = "$" & value
                             item.SetRightLabel(price)
-                            .SubInteger2 = 200 * ii
+                            .Tag = New ModClass(i, 200 * ii)
                         End If
                     End If
+
                 End With
                 menu.AddItem(item)
             Next
@@ -1352,14 +1303,14 @@ Module MenuHelper
             item = New UIMenuItem(GetLocalizedModName(-1, veh.GetModCount(vehmod), vehmod))
             With item
                 If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                .SubInteger1 = -1
                 If veh.GetMod(vehmod) = -1 Then
                     item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(-1, 0)
                 Else
                     Dim value As Integer = 200
                     Dim price As String = "$" & value
                     item.SetRightLabel(price)
-                    .SubInteger2 = 200
+                    .Tag = New ModClass(-1, 200)
                 End If
             End With
             menu.AddItem(item)
@@ -1368,16 +1319,16 @@ Module MenuHelper
                 item = New UIMenuItem(GetLocalizedModName(i, veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                    .SubInteger1 = i
                     If veh.GetMod(vehmod) = i Then
                         item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(i, 0)
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
                             Dim price As String = "$" & value
                             item.SetRightLabel(price)
-                            .SubInteger2 = 200 * ii
+                            .Tag = New ModClass(i, 200 * ii)
                         End If
                     End If
                 End With
@@ -1399,16 +1350,16 @@ Module MenuHelper
                 item = New UIMenuItem(GetLocalizedModName(i, veh.GetModCount(vehmod), vehmod))
                 With item
                     If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                    .SubInteger1 = i
                     If veh.GetMod(vehmod) = i Then
                         item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(i, 0)
                     Else
                         If Not i = -1 Then
                             Dim ii = i + 1
                             Dim value As Integer = 200 * ii
                             Dim price As String = "$" & value
                             item.SetRightLabel(price)
-                            .SubInteger2 = 200 * ii
+                            .Tag = New ModClass(i, 200 * ii)
                         End If
                     End If
                 End With
@@ -1432,16 +1383,16 @@ Module MenuHelper
                     item = New UIMenuItem(GetLocalizedModName(i, veh.GetModCount(vehmod), vehmod))
                     With item
                         If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                        .SubInteger1 = i
                         If veh.GetMod(vehmod) = i Then
                             item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            .Tag = New ModClass(i, 0)
                         Else
                             If Not i = -1 Then
                                 Dim ii = i + 1
                                 Dim value As Integer = 200 * ii
                                 Dim price As String = "$" & value
                                 item.SetRightLabel(price)
-                                .SubInteger2 = 200 * ii
+                                .Tag = New ModClass(i, 200 * ii)
                             End If
                         End If
                     End With
@@ -1452,16 +1403,16 @@ Module MenuHelper
                     item = New UIMenuItem(GetLocalizedModName(i, veh.GetModCount(vehmod), vehmod))
                     With item
                         If .Text = "NULL" Then .Text = Game.GetGXTEntry("CMOD_ARM_0")
-                        .SubInteger1 = i
                         If veh.GetMod(vehmod) = i Then
                             item.SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            .Tag = New ModClass(i, 0)
                         Else
                             If Not i = -1 Then
                                 Dim ii = i + 1
                                 Dim value As Integer = 200 * ii
                                 Dim price As String = "$" & value
                                 item.SetRightLabel(price)
-                                .SubInteger2 = 200 * ii
+                                .Tag = New ModClass(i, 200 * ii)
                             End If
                         End If
                     End With
@@ -1482,20 +1433,18 @@ Module MenuHelper
             If veh.GetMod(VehicleMod.FrontWheels) = -1 Then
                 iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_0"))
                 With iTires
-                    .SubInteger1 = 1
                     If Not IsCustomWheels() Then
                         .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                        .Tag = New ModClass(1, 0)
                     Else
-                        Dim value As Integer = 100
-                        Dim price As String = "$" & value
-                        .SetRightLabel(price)
-                        .SubInteger2 = 100
+                        .SetRightLabel($"${100}")
+                        .Tag = New ModClass(1, 100)
                     End If
                 End With
                 mTires.AddItem(iTires)
             Else
                 Select Case veh.WheelType
-                    Case 8, 9
+                    Case 8, 9, 10, 11
                         Dim whe As Integer = GetBennysOriginalRim(veh.GetMod(VehicleMod.FrontWheels))
                         Dim count As Integer = veh.GetModCount(VehicleMod.FrontWheels)
                         Dim oneOver6 As Integer = count / 7
@@ -1503,124 +1452,107 @@ Module MenuHelper
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_0"))
                         With iTires
                             Dim newid As Integer = whe
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim value As Integer = 100
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 100
+                                .SetRightLabel($"${100}")
+                                .Tag = New ModClass(newid, 100)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jg")) 'White Lines
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne) ' + 1
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim value As Integer = 200
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 200
+                                .SetRightLabel($"${200}")
+                                .Tag = New ModClass(newid, 200)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jh")) 'Classic White Wall
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 2) ' + 2
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim value As Integer = 300
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 300
+                                .SetRightLabel($"${300}")
+                                .Tag = New ModClass(newid, 300)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925ji")) 'Retro White Wall
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 3) ' + 3
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim value As Integer = 400
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 400
+                                .SetRightLabel($"${400}")
+                                .Tag = New ModClass(newid, 400)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jj")) 'Red Line
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 4) ' + 4
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim price As String = "$" & 500
-                                .SetRightLabel(price)
-                                .SubInteger2 = 500
+                                .SetRightLabel($"${500}")
+                                .Tag = New ModClass(newid, 500)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("collision_v925jk")) 'Blue Line
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 5) ' + 5
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim value As Integer = 600
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 600
+                                .SetRightLabel($"${600}")
+                                .Tag = New ModClass(newid, 600)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_1"))
                         With iTires
                             Dim newid As Integer = (whe + thirtyOne * 6) ' + 6
-                            .SubInteger1 = newid
                             If veh.GetMod(VehicleMod.FrontWheels) = newid Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(newid, 0)
                             Else
-                                Dim value As Integer = 700
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 700
+                                .SetRightLabel($"${700}")
+                                .Tag = New ModClass(newid, 700)
                             End If
                         End With
                         mTires.AddItem(iTires)
                     Case Else
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_0"))
                         With iTires
-                            .SubInteger1 = 1
                             If Not IsCustomWheels() Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(1, 0)
                             Else
-                                Dim value As Integer = 100
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 100
+                                .SetRightLabel($"${100}")
+                                .Tag = New ModClass(1, 100)
                             End If
                         End With
                         mTires.AddItem(iTires)
                         iTires = New UIMenuItem(Game.GetGXTEntry("CMOD_TYR_1"))
                         With iTires
-                            .SubInteger1 = 7
                             If IsCustomWheels() Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New ModClass(7, 0)
                             Else
-                                Dim value As Integer = 700
-                                Dim price As String = "$" & value
-                                .SetRightLabel(price)
-                                .SubInteger2 = 700
+                                .SetRightLabel($"${700}")
+                                .Tag = New ModClass(7, 700)
                             End If
                         End With
                         mTires.AddItem(iTires)
@@ -1640,26 +1572,21 @@ Module MenuHelper
                 If Not removeList.Contains(col.Name) Then
                     item = New UIMenuItem(Trim(RegularExpressions.Regex.Replace(col.Name, "[A-Z]", " ${0}")))
                     With item
-                        .SubInteger1 = Drawing.Color.FromName(col.Name).R
-                        .SubInteger2 = Drawing.Color.FromName(col.Name).G
-                        .SubInteger3 = Drawing.Color.FromName(col.Name).B
                         If neonsmoke = "Neon" Then
                             If veh.NeonLightsColor = Drawing.Color.FromName(col.Name) Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New RGBModClass(Color.FromName(col.Name), 0)
                             Else
-                                Dim value As Integer = 200
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger4 = 200
+                                item.SetRightLabel($"${200}")
+                                .Tag = New RGBModClass(Color.FromName(col.Name), 200)
                             End If
                         ElseIf neonsmoke = "Smoke" Then
                             If veh.TireSmokeColor = Drawing.Color.FromName(col.Name) Then
                                 .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                                .Tag = New RGBModClass(Color.FromName(col.Name), 0)
                             Else
-                                Dim value As Integer = 200
-                                Dim price As String = "$" & value
-                                item.SetRightLabel(price)
-                                .SubInteger4 = 200
+                                item.SetRightLabel($"${200}")
+                                .Tag = New RGBModClass(Color.FromName(col.Name), 200)
                             End If
                         End If
                     End With
@@ -1737,102 +1664,91 @@ Module MenuHelper
 
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_0"))
             With iNeon
-                .SubInteger1 = NeonLayouts.None
-                If NeonLayout() = NeonLayouts.None Then .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                If NeonLayout() = NeonLayouts.None Then
+                    .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.None, 0)
+                Else
+                    .Tag = New ModClass(NeonLayouts.None, 0)
+                End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_1"))
             With iNeon
-                .SubInteger1 = NeonLayouts.Front
                 If NeonLayout() = NeonLayouts.Front Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.Front, 0)
                 Else
-                    Dim value As Integer = 1000
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 1000
+                    .SetRightLabel($"${1000}")
+                    .Tag = New ModClass(NeonLayouts.Front, 1000)
                 End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_2"))
             With iNeon
-                .SubInteger1 = NeonLayouts.Back
                 If NeonLayout() = NeonLayouts.Back Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.Back, 0)
                 Else
-                    Dim value As Integer = 1000
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 1000
+                    .SetRightLabel($"${1000}")
+                    .Tag = New ModClass(NeonLayouts.Back, 1000)
                 End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_3"))
             With iNeon
-                .SubInteger1 = NeonLayouts.Sides
                 If NeonLayout() = NeonLayouts.Sides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.Sides, 0)
                 Else
-                    Dim value As Integer = 1250
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 1250
+                    .SetRightLabel($"${1250}")
+                    .Tag = New ModClass(NeonLayouts.Sides, 1250)
                 End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_4"))
             With iNeon
-                .SubInteger1 = NeonLayouts.FrontAndBack
                 If NeonLayout() = NeonLayouts.FrontAndBack Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.FrontAndBack, 0)
                 Else
-                    Dim value As Integer = 1800
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 1800
+                    .SetRightLabel($"${1800}")
+                    .Tag = New ModClass(NeonLayouts.FrontAndBack, 1800)
                 End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_5"))
             With iNeon
-                .SubInteger1 = NeonLayouts.FrontAndSides
                 If NeonLayout() = NeonLayouts.FrontAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.FrontAndSides, 0)
                 Else
-                    Dim value As Integer = 2000
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 2000
+                    .SetRightLabel($"${2000}")
+                    .Tag = New ModClass(NeonLayouts.FrontAndSides, 2000)
                 End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_6"))
             With iNeon
-                .SubInteger1 = NeonLayouts.BackAndSides
                 If NeonLayout() = NeonLayouts.BackAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.BackAndSides, 0)
                 Else
-                    Dim value As Integer = 2000
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 2000
+                    .SetRightLabel($"${2000}")
+                    .Tag = New ModClass(NeonLayouts.BackAndSides, 2000)
                 End If
             End With
             mNeon.AddItem(iNeon)
             iNeon = New UIMenuItem(Game.GetGXTEntry("CMOD_NEONLAY_7"))
             With iNeon
-                .SubInteger1 = NeonLayouts.FrontBackAndSides
                 If NeonLayout() = NeonLayouts.FrontBackAndSides Then
                     .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                    .Tag = New ModClass(NeonLayouts.FrontBackAndSides, 0)
                 Else
-                    Dim value As Integer = 3000
-                    Dim price As String = "$" & value
-                    .SetRightLabel(price)
-                    .SubInteger2 = 3000
+                    .SetRightLabel($"${3000}")
+                    .Tag = New ModClass(NeonLayouts.FrontBackAndSides, 3000)
                 End If
             End With
             mNeon.AddItem(iNeon)
-
             mNeon.RefreshIndex()
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -1919,33 +1835,29 @@ Module MenuHelper
             For Each col As VehicleColor In colorList
                 item = New UIMenuItem(GetLocalizedColorName(col))
                 With item
-                    .SubInteger1 = col
                     If prisecpear = "Primary" Then
                         If veh.PrimaryColor = col Then
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            .Tag = New ModClass(col, 0)
                         Else
-                            Dim value As Integer = 2000
-                            Dim price As String = "$" & value
-                            item.SetRightLabel(price)
-                            .SubInteger2 = 2000
+                            item.SetRightLabel($"${2000}")
+                            .Tag = New ModClass(col, 2000)
                         End If
                     ElseIf prisecpear = "Secondary" Then
                         If veh.SecondaryColor = col Then
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            .Tag = New ModClass(col, 0)
                         Else
-                            Dim value As Integer = 2000
-                            Dim price As String = "$" & value
-                            item.SetRightLabel(price)
-                            .SubInteger2 = 2000
+                            item.SetRightLabel($"${2000}")
+                            .Tag = New ModClass(col, 2000)
                         End If
                     ElseIf prisecpear = "Pearlescent" Then
                         If veh.PearlescentColor = col Then
                             .SetRightBadge(UIMenuItem.BadgeStyle.Car)
+                            .Tag = New ModClass(col, 0)
                         Else
-                            Dim value As Integer = 2000
-                            Dim price As String = "$" & value
-                            item.SetRightLabel(price)
-                            .SubInteger2 = 2000
+                            item.SetRightLabel($"${2000}")
+                            .Tag = New ModClass(col, 2000)
                         End If
                     End If
                 End With
@@ -1965,7 +1877,7 @@ Module MenuHelper
                 iRepair = New UIMenuItem(LocalizedModGroupName(GroupName.Repair), Game.GetGXTEntry("CMOD_MOD_0_D")) 'Repair
                 With iRepair
                     .SetRightLabel("$" & veh.GetRepairPrice)
-                    .SubInteger1 = veh.GetRepairPrice
+                    .Tag = veh.GetRepairPrice
                 End With
                 MainMenu.AddItem(iRepair)
                 MainMenu.RefreshIndex()
@@ -1976,7 +1888,7 @@ Module MenuHelper
                     iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
                         .SetRightLabel("$" & veh.Model.GetUpgradePrice)
-                        .SubInteger1 = veh.Model.GetUpgradePrice
+                        .Tag = veh.Model.GetUpgradePrice
                     End With
                     MainMenu.AddItem(iUpgrade)
                 End If
@@ -1985,7 +1897,7 @@ Module MenuHelper
                     iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
                         .SetRightLabel("$" & upgrade2.Item2)
-                        .SubInteger1 = upgrade2.Item2
+                        .Tag = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
                 End If
@@ -2002,7 +1914,8 @@ Module MenuHelper
                         MainMenu.AddItem(giWeapon)
                         MainMenu.BindMenuToItem(gmWeapon, giWeapon)
                     End If
-                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
+                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or
+                        veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
                         giBodyworkArena = New UIMenuItem(LocalizedModGroupName(GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork arena
                         MainMenu.AddItem(giBodyworkArena)
                         MainMenu.BindMenuToItem(gmBodyworkArena, giBodyworkArena)
@@ -2131,7 +2044,7 @@ Module MenuHelper
                     iUpgrade = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D")) 'Upgrade
                     With iUpgrade
                         .SetRightLabel("$" & veh.Model.GetUpgradePrice)
-                        .SubInteger1 = veh.Model.GetUpgradePrice
+                        .Tag = CInt(veh.Model.GetUpgradePrice)
                     End With
                     MainMenu.AddItem(iUpgrade)
                 End If
@@ -2140,7 +2053,7 @@ Module MenuHelper
                     iUpgradeMod = New UIMenuItem(LocalizedModGroupName(GroupName.Upgrade), Game.GetGXTEntry("CMOD_MOD_100_D"))
                     With iUpgradeMod
                         .SetRightLabel("$" & upgrade2.Item2)
-                        .SubInteger1 = upgrade2.Item2
+                        .Tag = upgrade2.Item2
                     End With
                     MainMenu.AddItem(iUpgradeMod)
                 End If
@@ -2158,7 +2071,8 @@ Module MenuHelper
                         MainMenu.AddItem(giWeapon)
                         MainMenu.BindMenuToItem(gmWeapon, giWeapon)
                     End If
-                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
+                    If (veh.GetModCount(VehicleMod.Plaques) <> 0 Or veh.GetModCount(VehicleMod.Frame) <> 0 Or veh.GetModCount(VehicleMod.Aerials) <> 0 Or veh.GetModCount(VehicleMod.Trim) <> 0 Or
+                        veh.GetModCount(VehicleMod.VanityPlates) <> 0 Or veh.GetModCount(VehicleMod.Ornaments) <> 0) Then
                         giBodyworkArena = New UIMenuItem(LocalizedModGroupName(GroupName.Bodyworks), Game.GetGXTEntry("IE_BO_DT1")) 'bodywork arena
                         MainMenu.AddItem(giBodyworkArena)
                         MainMenu.BindMenuToItem(gmBodyworkArena, giBodyworkArena)
@@ -2410,6 +2324,8 @@ Module MenuHelper
         mCTuner = mCTuner.NewUIMenu(GetLocalizedWheelTypeName(VehicleWheelType.Tuner).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mBennysOriginals = mBennysOriginals.NewUIMenu(GetLocalizedWheelTypeName(8).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mBespoke = mBespoke.NewUIMenu(GetLocalizedWheelTypeName(9).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mRacing = mRacing.NewUIMenu(GetLocalizedWheelTypeName(10).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
+        mStreet = mStreet.NewUIMenu(GetLocalizedWheelTypeName(11).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mRimColor = mRimColor.NewUIMenu(LocalizedModGroupName(GroupName.WheelColor).ToUpper, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mTires = mTires.NewUIMenu("CMOD_TYR_T", False, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
         mTireSmoke = mTireSmoke.NewUIMenu("CMOD_MOD_TYR3", True, True, AddressOf ModsMenuCloseHandler, AddressOf ModsMenuItemSelectHandler, AddressOf ModsMenuIndexChangedHandler)
@@ -2485,8 +2401,8 @@ Module MenuHelper
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     lastVehMemory.BulletProofTires = False
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
+                    selectedItem.Tag = 0
                 End If
             End If
         End If
@@ -2494,219 +2410,231 @@ Module MenuHelper
 
     Public Sub ModsMenuIndexChangedHandler(sender As UIMenu, index As Integer)
         Try
-            'Performance
-            If sender Is mSuspension Then
-                veh.SetMod(VehicleMod.Suspension, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mArmor Then
-                veh.SetMod(VehicleMod.Armor, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mBrakes Then
-                veh.SetMod(VehicleMod.Brakes, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTransmission Then
-                veh.SetMod(VehicleMod.Transmission, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mEngine Then
-                veh.SetMod(VehicleMod.Engine, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mNitro Then
-                veh.SetBool(nitroMod, CBool(sender.MenuItems(index).SubInteger1))
-            End If
+            If sender Is mHeadlights Then
+                'Headlights color
+                Dim tmc As ToggleModClass = sender.MenuItems(index).Tag
+                veh.ToggleMod(VehicleToggleMod.XenonHeadlights, tmc.ModToggle)
+                If index = 0 Then veh.SetXenonHeadlightsColor(tmc.ModID, False) Else veh.SetXenonHeadlightsColor(tmc.ModID, True)
+            ElseIf (sender Is mNeonColor) Or (sender Is mTireSmoke) Then
+                'RGB Color
+                Dim mc As RGBModClass = sender.MenuItems(index).Tag
+                If sender Is mNeonColor Then
+                    veh.NeonLightsColor = mc.Color
+                ElseIf sender Is mTireSmoke Then
+                    veh.TireSmokeColor = mc.Color
+                    veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
+                End If
+            Else
+                Dim mc As ModClass = sender.MenuItems(index).Tag
 
-            'Mod
-            If sender Is mFBumper Then
-                veh.SetMod(VehicleMod.FrontBumper, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mRBumper Then
-                veh.SetMod(VehicleMod.RearBumper, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mSSkirt Then
-                veh.SetMod(VehicleMod.SideSkirt, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mNumberPlate Then
-                veh.NumberPlateType = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mHeadlights Then
-                veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(sender.MenuItems(index).SubInteger1))
-                If index = 0 Then veh.SetXenonHeadlightsColor(sender.MenuItems(index).SubInteger3, False) Else veh.SetXenonHeadlightsColor(sender.MenuItems(index).SubInteger3, True)
-            ElseIf sender Is mArchCover Then
-                veh.SetMod(VehicleMod.ArchCover, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mExhaust Then
-                veh.SetMod(VehicleMod.Exhaust, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mFender Then
-                veh.SetMod(VehicleMod.Fender, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mRFender Then
-                veh.SetMod(VehicleMod.RightFender, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mDoor Then
-                veh.SetMod(VehicleMod.DoorSpeakers, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mFrame Then
-                veh.SetMod(VehicleMod.Frame, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mAerials Then
-                veh.SetMod(VehicleMod.Aerials, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTrim Then
-                veh.SetMod(VehicleMod.Trim, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mEngineBlock Then
-                veh.SetMod(VehicleMod.EngineBlock, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mAirFilter Then
-                veh.SetMod(VehicleMod.AirFilter, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mStruts Then
-                veh.SetMod(VehicleMod.Struts, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mColumnShifterLevers Then
-                veh.SetMod(VehicleMod.ColumnShifterLevers, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mDashboard Then
-                veh.SetMod(VehicleMod.Dashboard, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mDialDesign Then
-                veh.SetMod(VehicleMod.DialDesign, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mOrnaments Then
-                veh.SetMod(VehicleMod.Ornaments, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mSeats Then
-                veh.SetMod(VehicleMod.Seats, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mSteeringWheels Then
-                veh.SetMod(VehicleMod.SteeringWheels, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTrimDesign Then
-                veh.SetMod(VehicleMod.TrimDesign, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mPlateHolder Then
-                veh.SetMod(VehicleMod.PlateHolder, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mVanityPlates Then
-                veh.SetMod(VehicleMod.VanityPlates, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mGrille Then
-                veh.SetMod(VehicleMod.Grille, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mHood Then
-                veh.SetMod(VehicleMod.Hood, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mHorn Then
-                veh.SetMod(VehicleMod.Horns, sender.MenuItems(index).SubInteger1, False)
-                ply.Task.WarpIntoVehicle(veh, VehicleSeat.Passenger)
-                veh.SoundHorn(3000)
-            ElseIf sender Is mHydraulics Then
-                veh.SetMod(VehicleMod.Hydraulics, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mLivery Then
-                veh.SetMod(VehicleMod.Livery, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTornadoC Then
-                veh.SetLivery2(sender.MenuItems(index).SubInteger1)
-            ElseIf sender Is mPlaques Then
-                veh.SetMod(VehicleMod.Plaques, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mRoof Then
-                veh.SetMod(VehicleMod.Roof, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mSpeakers Then
-                veh.SetMod(VehicleMod.Speakers, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mSpoilers Then
-                veh.SetMod(VehicleMod.Spoilers, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTank Then
-                veh.SetMod(VehicleMod.Tank, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTrunk Then
-                veh.SetMod(VehicleMod.Trunk, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mWindow Then
-                veh.SetMod(VehicleMod.Windows, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mTurbo Then
-                veh.ToggleMod(VehicleToggleMod.Turbo, CBool(sender.MenuItems(index).SubInteger1))
-            ElseIf sender Is mTint Then
-                veh.WindowTint = sender.MenuItems(index).SubInteger1
-            End If
+                'Performance
+                If sender Is mSuspension Then
+                    veh.SetMod(VehicleMod.Suspension, mc.ModID, False)
+                ElseIf sender Is mArmor Then
+                    veh.SetMod(VehicleMod.Armor, mc.ModID, False)
+                ElseIf sender Is mBrakes Then
+                    veh.SetMod(VehicleMod.Brakes, mc.ModID, False)
+                ElseIf sender Is mTransmission Then
+                    veh.SetMod(VehicleMod.Transmission, mc.ModID, False)
+                ElseIf sender Is mEngine Then
+                    veh.SetMod(VehicleMod.Engine, mc.ModID, False)
+                ElseIf sender Is mNitro Then
+                    veh.SetInt(nitroMod, mc.ModID)
+                End If
 
-            'Bike Mods
-            If sender Is mShifter Then
-                veh.SetMod(VehicleMod.Fender, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mFMudguard Then
-                veh.SetMod(VehicleMod.FrontBumper, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mBSeat Then
-                veh.SetMod(VehicleMod.Hood, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mOilTank Then
-                veh.SetMod(VehicleMod.Grille, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mRMudguard Then
-                veh.SetMod(VehicleMod.RearBumper, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mFuelTank Then
-                veh.SetMod(VehicleMod.Roof, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mBeltDriveCovers Then
-                veh.SetMod(VehicleMod.Spoilers, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mBEngineBlock Then
-                veh.SetMod(VehicleMod.Frame, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mBAirFilter Then
-                veh.SetMod(VehicleMod.SideSkirt, sender.MenuItems(index).SubInteger1, False)
-            ElseIf sender Is mBTank Then
-                veh.SetMod(VehicleMod.Tank, sender.MenuItems(index).SubInteger1, False)
-            End If
+                'Mod
+                If sender Is mFBumper Then
+                    veh.SetMod(VehicleMod.FrontBumper, mc.ModID, False)
+                ElseIf sender Is mRBumper Then
+                    veh.SetMod(VehicleMod.RearBumper, mc.ModID, False)
+                ElseIf sender Is mSSkirt Then
+                    veh.SetMod(VehicleMod.SideSkirt, mc.ModID, False)
+                ElseIf sender Is mNumberPlate Then
+                    veh.NumberPlateType = CType(mc.ModID, NumberPlateType)
+                ElseIf sender Is mArchCover Then
+                    veh.SetMod(VehicleMod.ArchCover, mc.ModID, False)
+                ElseIf sender Is mExhaust Then
+                    veh.SetMod(VehicleMod.Exhaust, mc.ModID, False)
+                ElseIf sender Is mFender Then
+                    veh.SetMod(VehicleMod.Fender, mc.ModID, False)
+                ElseIf sender Is mRFender Then
+                    veh.SetMod(VehicleMod.RightFender, mc.ModID, False)
+                ElseIf sender Is mDoor Then
+                    veh.SetMod(VehicleMod.DoorSpeakers, mc.ModID, False)
+                ElseIf sender Is mFrame Then
+                    veh.SetMod(VehicleMod.Frame, mc.ModID, False)
+                ElseIf sender Is mAerials Then
+                    veh.SetMod(VehicleMod.Aerials, mc.ModID, False)
+                ElseIf sender Is mTrim Then
+                    veh.SetMod(VehicleMod.Trim, mc.ModID, False)
+                ElseIf sender Is mEngineBlock Then
+                    veh.SetMod(VehicleMod.EngineBlock, mc.ModID, False)
+                ElseIf sender Is mAirFilter Then
+                    veh.SetMod(VehicleMod.AirFilter, mc.ModID, False)
+                ElseIf sender Is mStruts Then
+                    veh.SetMod(VehicleMod.Struts, mc.ModID, False)
+                ElseIf sender Is mColumnShifterLevers Then
+                    veh.SetMod(VehicleMod.ColumnShifterLevers, mc.ModID, False)
+                ElseIf sender Is mDashboard Then
+                    veh.SetMod(VehicleMod.Dashboard, mc.ModID, False)
+                ElseIf sender Is mDialDesign Then
+                    veh.SetMod(VehicleMod.DialDesign, mc.ModID, False)
+                ElseIf sender Is mOrnaments Then
+                    veh.SetMod(VehicleMod.Ornaments, mc.ModID, False)
+                ElseIf sender Is mSeats Then
+                    veh.SetMod(VehicleMod.Seats, mc.ModID, False)
+                ElseIf sender Is mSteeringWheels Then
+                    veh.SetMod(VehicleMod.SteeringWheels, mc.ModID, False)
+                ElseIf sender Is mTrimDesign Then
+                    veh.SetMod(VehicleMod.TrimDesign, mc.ModID, False)
+                ElseIf sender Is mPlateHolder Then
+                    veh.SetMod(VehicleMod.PlateHolder, mc.ModID, False)
+                ElseIf sender Is mVanityPlates Then
+                    veh.SetMod(VehicleMod.VanityPlates, mc.ModID, False)
+                ElseIf sender Is mGrille Then
+                    veh.SetMod(VehicleMod.Grille, mc.ModID, False)
+                ElseIf sender Is mHood Then
+                    veh.SetMod(VehicleMod.Hood, mc.ModID, False)
+                ElseIf sender Is mHorn Then
+                    veh.SetMod(VehicleMod.Horns, mc.ModID, False)
+                    ply.Task.WarpIntoVehicle(veh, VehicleSeat.Passenger)
+                    veh.SoundHorn(3000)
+                ElseIf sender Is mHydraulics Then
+                    veh.SetMod(VehicleMod.Hydraulics, mc.ModID, False)
+                ElseIf sender Is mLivery Then
+                    veh.SetMod(VehicleMod.Livery, mc.ModID, False)
+                ElseIf sender Is mTornadoC Then
+                    veh.SetLivery2(mc.ModID)
+                ElseIf sender Is mPlaques Then
+                    veh.SetMod(VehicleMod.Plaques, mc.ModID, False)
+                ElseIf sender Is mRoof Then
+                    veh.SetMod(VehicleMod.Roof, mc.ModID, False)
+                ElseIf sender Is mSpeakers Then
+                    veh.SetMod(VehicleMod.Speakers, mc.ModID, False)
+                ElseIf sender Is mSpoilers Then
+                    veh.SetMod(VehicleMod.Spoilers, mc.ModID, False)
+                ElseIf sender Is mTank Then
+                    veh.SetMod(VehicleMod.Tank, mc.ModID, False)
+                ElseIf sender Is mTrunk Then
+                    veh.SetMod(VehicleMod.Trunk, mc.ModID, False)
+                ElseIf sender Is mWindow Then
+                    veh.SetMod(VehicleMod.Windows, mc.ModID, False)
+                ElseIf sender Is mTurbo Then
+                    veh.ToggleMod(VehicleToggleMod.Turbo, mc.ModIDBool)
+                ElseIf sender Is mTint Then
+                    veh.WindowTint = mc.ModID
+                End If
 
-            'Neons Mods
-            If sender Is mNeon Then
-                Select Case sender.MenuItems(index).SubInteger1
-                    Case NeonLayouts.None
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case NeonLayouts.Front
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case NeonLayouts.Back
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case NeonLayouts.Sides
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                    Case NeonLayouts.FrontAndBack
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
-                    Case NeonLayouts.FrontAndSides
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                    Case NeonLayouts.BackAndSides
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                    Case NeonLayouts.FrontBackAndSides
-                        veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
-                        veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
-                End Select
-            End If
+                'Bike Mods
+                If sender Is mShifter Then
+                    veh.SetMod(VehicleMod.Fender, mc.ModID, False)
+                ElseIf sender Is mFMudguard Then
+                    veh.SetMod(VehicleMod.FrontBumper, mc.ModID, False)
+                ElseIf sender Is mBSeat Then
+                    veh.SetMod(VehicleMod.Hood, mc.ModID, False)
+                ElseIf sender Is mOilTank Then
+                    veh.SetMod(VehicleMod.Grille, mc.ModID, False)
+                ElseIf sender Is mRMudguard Then
+                    veh.SetMod(VehicleMod.RearBumper, mc.ModID, False)
+                ElseIf sender Is mFuelTank Then
+                    veh.SetMod(VehicleMod.Roof, mc.ModID, False)
+                ElseIf sender Is mBeltDriveCovers Then
+                    veh.SetMod(VehicleMod.Spoilers, mc.ModID, False)
+                ElseIf sender Is mBEngineBlock Then
+                    veh.SetMod(VehicleMod.Frame, mc.ModID, False)
+                ElseIf sender Is mBAirFilter Then
+                    veh.SetMod(VehicleMod.SideSkirt, mc.ModID, False)
+                ElseIf sender Is mBTank Then
+                    veh.SetMod(VehicleMod.Tank, mc.ModID, False)
+                End If
 
-            'Wheels Mods
-            If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
-                veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
-                veh.SetMod(VehicleMod.BackWheels, sender.MenuItems(index).SubInteger1, False)
-            ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
-                veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
-            End If
-            If sender Is mTires Then
-                Select Case veh.WheelType
-                    Case 8, 9
-                        veh.SetMod(VehicleMod.FrontWheels, sender.MenuItems(index).SubInteger1, False)
-                    Case Else
-                        If sender.MenuItems(index).SubInteger1 = 1 Then
-                            veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.FrontWheels), False)
-                            If veh.ClassType = VehicleClass.Motorcycles Then veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.BackWheels), False)
-                        ElseIf sender.MenuItems(index).SubInteger1 = 7 Then
-                            veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.FrontWheels), True)
-                            If veh.ClassType = VehicleClass.Motorcycles Then veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.BackWheels), True)
-                        End If
-                End Select
-            End If
+                'Neons Mods
+                If sender Is mNeon Then
+                    Select Case CType(mc.ModID, NeonLayouts)
+                        Case NeonLayouts.None
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                        Case NeonLayouts.Front
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                        Case NeonLayouts.Back
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                        Case NeonLayouts.Sides
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                        Case NeonLayouts.FrontAndBack
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
+                        Case NeonLayouts.FrontAndSides
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                        Case NeonLayouts.BackAndSides
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, False)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                        Case NeonLayouts.FrontBackAndSides
+                            veh.SetNeonLightsOn(VehicleNeonLight.Back, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Front, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Left, True)
+                            veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
+                    End Select
+                End If
 
-            'Color
-            If sender Is mLightsColor Then
-                veh.DashboardColor = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mTrimColor Then
-                veh.TrimColor = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mRimColor Then
-                veh.RimColor = sender.MenuItems(index).SubInteger1
-            ElseIf (sender Is mPrimaryChromeColor) Or (sender Is mPrimaryClassicColor) Or (sender Is mPrimaryMatteColor) Or (sender Is mPrimaryMetalsColor) Then
-                veh.PrimaryColor = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mPrimaryMetallicColor Then
-                veh.PrimaryColor = sender.MenuItems(index).SubInteger1
-                veh.PearlescentColor = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mPrimaryPearlescentColor Then
-                veh.PearlescentColor = sender.MenuItems(index).SubInteger1
-            ElseIf (sender Is mSecondaryChromeColor) Or (sender Is mSecondaryClassicColor) Or (sender Is mSecondaryMatteColor) Or (sender Is mSecondaryMetallicColor) Or (sender Is mSecondaryMetalsColor) Then
-                veh.SecondaryColor = sender.MenuItems(index).SubInteger1
-            ElseIf sender Is mNeonColor Then
-                veh.NeonLightsColor = Drawing.Color.FromArgb(sender.MenuItems(index).SubInteger1, sender.MenuItems(index).SubInteger2, sender.MenuItems(index).SubInteger3)
-            ElseIf sender Is mTireSmoke Then
-                veh.TireSmokeColor = Drawing.Color.FromArgb(sender.MenuItems(index).SubInteger1, sender.MenuItems(index).SubInteger2, sender.MenuItems(index).SubInteger3)
-                veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
+                'Wheels Mods
+                If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
+                    veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
+                    veh.SetMod(VehicleMod.BackWheels, mc.ModID, False)
+                ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or
+                       (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or
+                       (sender Is mBennysOriginals) Or (sender Is mBespoke) Or (sender Is mRacing) Or (sender Is mStreet) Then
+                    veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
+                End If
+                If sender Is mTires Then
+                    Select Case veh.WheelType
+                        Case 8, 9, 10, 11
+                            veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
+                        Case Else
+                            If mc.ModID = 1 Then
+                                veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.FrontWheels), False)
+                                If veh.ClassType = VehicleClass.Motorcycles Then veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.BackWheels), False)
+                            ElseIf mc.ModID = 7 Then
+                                veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.FrontWheels), True)
+                                If veh.ClassType = VehicleClass.Motorcycles Then veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.BackWheels), True)
+                            End If
+                    End Select
+                End If
+
+                'Color
+                If sender Is mLightsColor Then
+                    veh.DashboardColor = CType(mc.ModID, VehicleColor)
+                ElseIf sender Is mTrimColor Then
+                    veh.TrimColor = CType(mc.ModID, VehicleColor)
+                ElseIf sender Is mRimColor Then
+                    veh.RimColor = CType(mc.ModID, VehicleColor)
+                ElseIf (sender Is mPrimaryChromeColor) Or (sender Is mPrimaryClassicColor) Or (sender Is mPrimaryMatteColor) Or (sender Is mPrimaryMetalsColor) Then
+                    veh.PrimaryColor = CType(mc.ModID, VehicleColor)
+                ElseIf sender Is mPrimaryMetallicColor Then
+                    veh.PrimaryColor = CType(mc.ModID, VehicleColor)
+                    veh.PearlescentColor = CType(mc.ModID, VehicleColor)
+                ElseIf sender Is mPrimaryPearlescentColor Then
+                    veh.PearlescentColor = CType(mc.ModID, VehicleColor)
+                ElseIf (sender Is mSecondaryChromeColor) Or (sender Is mSecondaryClassicColor) Or (sender Is mSecondaryMatteColor) Or (sender Is mSecondaryMetallicColor) Or (sender Is mSecondaryMetalsColor) Then
+                    veh.SecondaryColor = CType(mc.ModID, VehicleColor)
+                End If
             End If
         Catch ex As Exception
             Logger.Log(ex.Message & " " & ex.StackTrace)
@@ -2715,7 +2643,7 @@ Module MenuHelper
 
     Public Sub ArenaWarMenuIndexChangedHandler(sender As UIMenu, index As Integer)
         Dim selecteditem As UIMenuItem = sender.MenuItems(index)
-        arenaVehImage = selecteditem.SubString2
+        arenaVehImage = CType(selecteditem.Tag, ArenaWarVehicle).Image
     End Sub
 
     Public Sub ModsMenuItemSelectHandler(sender As UIMenu, selectedItem As UIMenuItem, index As Integer)
@@ -2728,7 +2656,7 @@ Module MenuHelper
             If sender Is mUpgradeAW Then
                 Game.FadeScreenOut(1000)
                 Script.Wait(1000)
-                Dim newAWVeh As Vehicle = World.CreateVehicle(selectedItem.SubString1, veh.Position, veh.Heading)
+                Dim newAWVeh As Vehicle = World.CreateVehicle(CType(selectedItem.Tag, ArenaWarVehicle).Model, veh.Position, veh.Heading)
                 newAWVeh.IsPersistent = False
                 newAWVeh.PrimaryColor = lastVehMemory.PrimaryColor
                 newAWVeh.SecondaryColor = lastVehMemory.SecondaryColor
@@ -2791,16 +2719,16 @@ Module MenuHelper
                 newAWVeh.NumberPlate = lastVehMemory.PlateNumbers
                 newAWVeh.CanTiresBurst = lastVehMemory.BulletProofTires
                 veh.Delete()
-                ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
-                veh = veh
-                veh.InstallModKit()
+                ply.Task.WarpIntoVehicle(newAWVeh, VehicleSeat.Driver)
+                veh = newAWVeh
+                newAWVeh.InstallModKit()
                 MainMenu.MenuItems.Remove(iUpgradeAW)
                 isRepairing = True
                 RefreshMenus()
-                camera.RepositionFor(veh)
+                camera.RepositionFor(newAWVeh)
                 Script.Wait(1000)
                 Game.FadeScreenIn(1000)
-                Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                Game.Player.Money = (Game.Player.Money - CType(selectedItem.Tag, ArenaWarVehicle).Price)
                 Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                 Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                 PlaySpeech("LR_UPGRADE_SUPERMOD")
@@ -2809,62 +2737,68 @@ Module MenuHelper
             'Performance Mods
             If sender Is mSuspension Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Suspension, selectedItem.SubInteger1, False)
+                    Dim mi As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Suspension, mi.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Suspension = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mi.Price)
+                    selectedItem.Tag = New ModClass(mi.ModID, 0)
+                    lastVehMemory.Suspension = mi.ModID
                     PlaySpeech("SHOP_SELL_SUSPENSION")
                 End If
             ElseIf sender Is mArmor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Armor, selectedItem.SubInteger1, False)
+                    Dim mi As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Armor, mi.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Armor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mi.Price)
+                    selectedItem.Tag = New ModClass(mi.ModID, 0)
+                    lastVehMemory.Armor = mi.ModID
                     PlaySpeech("SHOP_SELL_ARMOUR")
                 End If
             ElseIf sender Is mBrakes Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Brakes, selectedItem.SubInteger1, False)
+                    Dim mi As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Brakes, mi.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Brakes = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mi.Price)
+                    selectedItem.Tag = New ModClass(mi.ModID, 0)
+                    lastVehMemory.Brakes = mi.ModID
                     PlaySpeech("SHOP_SELL_BRAKES")
                 End If
             ElseIf sender Is mTransmission Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Transmission, selectedItem.SubInteger1, False)
+                    Dim mi As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Transmission, mi.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Transmission = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mi.Price)
+                    selectedItem.Tag = New ModClass(mi.ModID, 0)
+                    lastVehMemory.Transmission = mi.ModID
                     PlaySpeech("SHOP_SELL_TRANS_UPGRADE")
                 End If
             ElseIf sender Is mEngine Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Engine, selectedItem.SubInteger1, False)
+                    Dim mi As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Engine, mi.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Engine = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mi.Price)
+                    selectedItem.Tag = New ModClass(mi.ModID, 0)
+                    lastVehMemory.Engine = mi.ModID
                     PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
             ElseIf sender Is mNitro Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetBool(nitroMod, CBool(selectedItem.SubInteger1))
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetInt(nitroMod, mc.ModID)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Nitro = CBool(selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Nitro = mc.ModID
                     PlaySpeech("SHOP_SELL_ENGINE_UPGRADE")
                 End If
             End If
@@ -2872,404 +2806,444 @@ Module MenuHelper
             'Mods
             If sender Is mFBumper Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.FrontBumper, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.FrontBumper, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.FrontBumper = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.FrontBumper = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mRBumper Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.RearBumper, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.RearBumper, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.RearBumper = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.RearBumper = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mSSkirt Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.SideSkirt, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.SideSkirt, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.SideSkirt = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.SideSkirt = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mNumberPlate Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.NumberPlateType = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.NumberPlateType = mc.ModID
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.NumberPlate = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.NumberPlate = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mHeadlights Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.ToggleMod(VehicleToggleMod.XenonHeadlights, CBool(selectedItem.SubInteger1))
-                    If selectedItem.Text = Game.GetGXTEntry("CMOD_LGT_0") Then veh.SetXenonHeadlightsColor(selectedItem.SubInteger3, False) Else veh.SetXenonHeadlightsColor(selectedItem.SubInteger3, True)
+                    Dim tmc As ToggleModClass = selectedItem.Tag
+                    veh.ToggleMod(VehicleToggleMod.XenonHeadlights, tmc.ModToggle)
+                    If selectedItem.Text = Game.GetGXTEntry("CMOD_LGT_0") Then veh.SetXenonHeadlightsColor(255, False) Else veh.SetXenonHeadlightsColor(tmc.ModID, True)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Headlights = CBool(selectedItem.SubInteger1)
-                    lastVehMemory.HeadlightsColor = selectedItem.SubInteger3
+                    Game.Player.Money = (Game.Player.Money - tmc.Price)
+                    selectedItem.Tag = New ToggleModClass(tmc.ModToggle, tmc.ModID, 0)
+                    lastVehMemory.Headlights = tmc.ModToggle
+                    lastVehMemory.HeadlightsColor = tmc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mArchCover Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.ArchCover, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.ArchCover, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.ArchCover = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.ArchCover = mc.ModID
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mExhaust Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Exhaust, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Exhaust, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Exhaust = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Exhaust = mc.ModID
                     PlaySpeech("SHOP_SELL_EXHAUST")
                 End If
             ElseIf sender Is mFender Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Fender, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Fender, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Fender = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Fender = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mRFender Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.RightFender, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.RightFender, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.RightFender = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.RightFender = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mDoor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.DoorSpeakers, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.DoorSpeakers, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.DoorSpeakers = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.DoorSpeakers = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mFrame Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Frame, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Frame, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Frame = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Frame = mc.ModID
                     PlaySpeech("LR_SELL_EXCHASSIS_MOD")
                 End If
             ElseIf sender Is mAerials Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Aerials, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Aerials, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Aerials = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Aerials = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mTrim Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Trim, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Trim, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Trim = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Trim = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mEngineBlock Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.EngineBlock, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.EngineBlock, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.EngineBlock = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.EngineBlock = mc.ModID
                     PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
             ElseIf sender Is mAirFilter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.AirFilter, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.AirFilter, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.AirFilter = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.AirFilter = mc.ModID
                     PlaySpeech("LR_UPGRADE_ENGINE")
                 End If
             ElseIf sender Is mStruts Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Struts, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Struts, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Struts = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Struts = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mColumnShifterLevers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.ColumnShifterLevers, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.ColumnShifterLevers, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.ColumnShifterLevers = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.ColumnShifterLevers = mc.ModID
                     PlaySpeech("LR_UPGRADE_GEARKNOB")
                 End If
             ElseIf sender Is mDashboard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Dashboard, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Dashboard, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Dashboard = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Dashboard = mc.ModID
                     PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mDialDesign Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.DialDesign, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.DialDesign, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.DialDesign = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.DialDesign = mc.ModID
                     PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mOrnaments Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Ornaments, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Ornaments, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Ornaments = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Ornaments = mc.ModID
                     PlaySpeech("LR_SELL_DOLL")
                 End If
             ElseIf sender Is mSeats Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Seats, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Seats, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Seats = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Seats = mc.ModID
                     PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mSteeringWheels Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.SteeringWheels, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.SteeringWheels, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.SteeringWheels = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.SteeringWheels = mc.ModID
                     PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mTrimDesign Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.TrimDesign, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.TrimDesign, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.TrimDesign = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.TrimDesign = mc.ModID
                     PlaySpeech("LR_SELL_SUPERMOD_INTERIOR")
                 End If
             ElseIf sender Is mPlateHolder Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.PlateHolder, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.PlateHolder, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.PlateHolder = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.PlateHolder = mc.ModID
                     PlaySpeech("LR_UPGRADE_PLATEHOLDER")
                 End If
             ElseIf sender Is mVanityPlates Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.VanityPlates, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.VanityPlates, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.VanityPlates = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.VanityPlates = mc.ModID
                     PlaySpeech("LR_SELL_VANITYPLATE")
                 End If
             ElseIf sender Is mGrille Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Grille, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Grille, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Grille = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Grille = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mHood Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Hood, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Hood, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Hood = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Hood = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mHorn Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Horns, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Horns, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Horns = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Horns = mc.ModID
                     PlaySpeech("SHOP_SELL_HORN")
                 End If
             ElseIf sender Is mHydraulics Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Hydraulics, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Hydraulics, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Hydraulics = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Hydraulics = mc.ModID
                     PlaySpeech("LR_UPGRADE_HYDRAULICS")
                 End If
             ElseIf sender Is mLivery Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Livery, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Livery, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Livery = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Livery = mc.ModID
                     PlaySpeech("LR_SELL_LIVERY")
                 End If
             ElseIf sender Is mTornadoC Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetLivery2(selectedItem.SubInteger1)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetLivery2(mc.ModID)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Livery2 = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Livery2 = mc.ModID
                     PlaySpeech("LR_SELL_LIVERY")
                 End If
             ElseIf sender Is mPlaques Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Plaques, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Plaques, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Plaques = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Plaques = mc.ModID
                     PlaySpeech("LR_UPGRADE_PLAQUE")
                 End If
             ElseIf sender Is mRoof Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Roof, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Roof, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Roof = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Roof = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mSpeakers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Speakers, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Speakers, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Speakers = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Speakers = mc.ModID
                     PlaySpeech("LR_UPGRADE_ICE")
                 End If
             ElseIf sender Is mSpoilers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Spoilers, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Spoilers, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Spoilers = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Spoilers = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Tank, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Tank, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Tank = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Tank = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mTrunk Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Trunk, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Trunk, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Trunk = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Trunk = mc.ModID
                     PlaySpeech("LR_UPGRADE_TRUNK")
                 End If
             ElseIf sender Is mWindow Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Windows, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Windows, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Windows = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Windows = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mTurbo Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.ToggleMod(VehicleToggleMod.Turbo, CBool(selectedItem.SubInteger1))
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.ToggleMod(VehicleToggleMod.Turbo, mc.ModIDBool)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Turbo = CBool(selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModIDBool, 0)
+                    lastVehMemory.Turbo = mc.ModIDBool
                     PlaySpeech("SHOP_SELL_TURBO")
                 End If
             ElseIf sender Is mTint Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.WindowTint = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.WindowTint = mc.ModID
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Tint = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Tint = mc.ModID
                     PlaySpeech("")
                 End If
             End If
@@ -3277,109 +3251,120 @@ Module MenuHelper
             'Bike Mods
             If sender Is mShifter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Fender, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Fender, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Fender = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Fender = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mFMudguard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.FrontBumper, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.FrontBumper, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.FrontBumper = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.FrontBumper = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mBSeat Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Hood, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Hood, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Hood = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Hood = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mOilTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Grille, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Grille, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Grille = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Grille = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mRMudguard Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.RearBumper, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.RearBumper, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.RearBumper = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.RearBumper = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mFuelTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Roof, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Roof, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Roof = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Roof = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mBeltDriveCovers Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Spoilers, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Spoilers, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Spoilers = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Spoilers = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mBEngineBlock Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Frame, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Frame, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Frame = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Frame = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mBAirFilter Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.SideSkirt, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.SideSkirt, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.SideSkirt = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.SideSkirt = mc.ModID
                     PlaySpeech("")
                 End If
             ElseIf sender Is mBTank Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.Tank, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.Tank, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.Tank = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.Tank = mc.ModID
                     PlaySpeech("")
                 End If
             End If
 
             'Neons Mods
             If sender Is mNeon Then
-                Select Case selectedItem.SubInteger1
+                Dim mc As ModClass = selectedItem.Tag
+                Select Case CType(mc.ModID, NeonLayouts)
                     Case NeonLayouts.None
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                             veh.SetNeonLightsOn(VehicleNeonLight.Back, False)
@@ -3388,8 +3373,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = False
                             lastVehMemory.BackNeon = False
                             lastVehMemory.LeftNeon = False
@@ -3403,8 +3388,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = True
                             lastVehMemory.BackNeon = False
                             lastVehMemory.LeftNeon = False
@@ -3418,8 +3403,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = False
                             lastVehMemory.BackNeon = True
                             lastVehMemory.LeftNeon = False
@@ -3433,8 +3418,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = False
                             lastVehMemory.BackNeon = False
                             lastVehMemory.LeftNeon = True
@@ -3448,8 +3433,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = True
                             lastVehMemory.BackNeon = True
                             lastVehMemory.LeftNeon = False
@@ -3463,8 +3448,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = True
                             lastVehMemory.BackNeon = False
                             lastVehMemory.LeftNeon = True
@@ -3478,8 +3463,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = False
                             lastVehMemory.BackNeon = True
                             lastVehMemory.LeftNeon = True
@@ -3493,8 +3478,8 @@ Module MenuHelper
                             veh.SetNeonLightsOn(VehicleNeonLight.Right, True)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                             lastVehMemory.FrontNeon = True
                             lastVehMemory.BackNeon = True
                             lastVehMemory.LeftNeon = True
@@ -3507,58 +3492,64 @@ Module MenuHelper
             'Wheels Mods           
             If (sender Is mSBikeWheels) Or (sender Is mCBikeWheels) Then 'gmBikeWheels
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
-                    veh.SetMod(VehicleMod.BackWheels, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
+                    veh.SetMod(VehicleMod.BackWheels, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, mc.Price)
                     lastVehMemory.WheelType = veh.WheelType
-                    lastVehMemory.FrontWheels = selectedItem.SubInteger1
-                    lastVehMemory.BackWheels = selectedItem.SubInteger1
+                    lastVehMemory.FrontWheels = mc.ModID
+                    lastVehMemory.BackWheels = mc.ModID
                     PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
-            ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or (sender Is mBennysOriginals) Or (sender Is mBespoke) Then
+            ElseIf (sender Is mSHighEnd) Or (sender Is mSLowrider) Or (sender Is mSMuscle) Or (sender Is mSOffroad) Or (sender Is mSSport) Or (sender Is mSSUV) Or (sender Is mSTuner) Or
+                   (sender Is mCHighEnd) Or (sender Is mCLowrider) Or (sender Is mCMuscle) Or (sender Is mCOffroad) Or (sender Is mCSport) Or (sender Is mCSUV) Or (sender Is mCTuner) Or
+                   (sender Is mBennysOriginals) Or (sender Is mBespoke) Or (sender Is mRacing) Or (sender Is mStreet) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
                     lastVehMemory.WheelType = veh.WheelType
-                    lastVehMemory.FrontWheels = selectedItem.SubInteger1
+                    lastVehMemory.FrontWheels = mc.ModID
                     PlaySpeech("LR_UPGRADE_WHEEL")
                 End If
             End If
             If sender Is mTires Then
                 Select Case veh.WheelType
-                    Case 8, 9
+                    Case 8, 9, 10, 11
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                            veh.SetMod(VehicleMod.FrontWheels, selectedItem.SubInteger1, False)
+                            Dim mc As ModClass = selectedItem.Tag
+                            veh.SetMod(VehicleMod.FrontWheels, mc.ModID, False)
                             selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
-                            lastVehMemory.FrontWheels = selectedItem.SubInteger1
+                            lastVehMemory.FrontWheels = mc.ModID
                             selectedItem.SetRightLabel(Nothing)
-                            Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                            selectedItem.SubInteger2 = 0
+                            Game.Player.Money = (Game.Player.Money - mc.Price)
+                            selectedItem.Tag = New ModClass(mc.ModID, 0)
                         End If
                     Case Else
                         If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                            If selectedItem.SubInteger1 = 1 Then
+                            Dim mc As ModClass = selectedItem.Tag
+                            If mc.ModID = 1 Then
                                 veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.FrontWheels), False)
                                 If veh.ClassType = VehicleClass.Motorcycles Then veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.BackWheels), False)
                                 selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                                 lastVehMemory.WheelsVariation = False
                                 selectedItem.SetRightLabel(Nothing)
-                                Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                                selectedItem.SubInteger2 = 0
-                            ElseIf selectedItem.SubInteger1 = 7 Then
+                                Game.Player.Money = (Game.Player.Money - mc.Price)
+                                selectedItem.Tag = New ModClass(mc.ModID, 0)
+                            ElseIf mc.ModID = 7 Then
                                 veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.FrontWheels), True)
                                 If veh.ClassType = VehicleClass.Motorcycles Then veh.SetMod(VehicleMod.FrontWheels, veh.GetMod(VehicleMod.BackWheels), True)
                                 selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                                 lastVehMemory.WheelsVariation = True
                                 selectedItem.SetRightLabel(Nothing)
-                                Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                                selectedItem.SubInteger2 = 0
+                                Game.Player.Money = (Game.Player.Money - mc.Price)
+                                selectedItem.Tag = New ModClass(mc.ModID, 0)
                             End If
                         End If
                 End Select
@@ -3569,9 +3560,6 @@ Module MenuHelper
             If sender Is gmWheelType Then
                 If selectedItem Is giBikeWheels Then
                     veh.WheelType = VehicleWheelType.BikeWheels
-                    ''RefreshModMenuFor(gmBikeWheels, iBikeWheels, VehicleMod.BackWheels)
-                    'RefreshStockWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.FrontWheels)
-                    'RefreshChromeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.FrontWheels)
                     RefreshBikeWheelsModMenuFor(mSBikeWheels, iSBikeWheels, VehicleMod.BackWheels, False)
                     RefreshBikeWheelsModMenuFor(mCBikeWheels, iCBikeWheels, VehicleMod.BackWheels, True)
                 ElseIf selectedItem Is giHighEndWheels Then
@@ -3608,6 +3596,12 @@ Module MenuHelper
                 ElseIf selectedItem Is giBespokeWheels Then
                     veh.WheelType = 9
                     RefreshLowriderDLCWheelsModMenuFor(mBespoke, iBespoke, VehicleMod.FrontWheels)
+                ElseIf selectedItem Is giRacingWheels Then
+                    veh.WheelType = 10
+                    RefreshLowriderDLCWheelsModMenuFor(mRacing, iRacing, VehicleMod.FrontWheels)
+                ElseIf selectedItem Is giStreetWheels Then
+                    veh.WheelType = 11
+                    RefreshLowriderDLCWheelsModMenuFor(mStreet, iStreet, VehicleMod.FrontWheels)
                 End If
             End If
             If sender Is gmBikeWheels Then
@@ -3630,101 +3624,113 @@ Module MenuHelper
                 veh.WheelType = 8
             ElseIf sender Is mBespoke Then
                 veh.WheelType = 9
+            ElseIf sender Is mRacing Then
+                veh.WheelType = 10
+            ElseIf sender Is mStreet Then
+                veh.WheelType = 11
             End If
 
             'Color
             If sender Is mLightsColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.DashboardColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.DashboardColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.LightsColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.LightsColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mTrimColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.TrimColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.TrimColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.TrimColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.TrimColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mRimColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.RimColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.RimColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.RimColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.RimColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf (sender Is mPrimaryChromeColor) Or (sender Is mPrimaryClassicColor) Or (sender Is mPrimaryMatteColor) Or (sender Is mPrimaryMetalsColor) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.PrimaryColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.PrimaryColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.PrimaryColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.PrimaryColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mPrimaryMetallicColor Then
-
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.PrimaryColor = selectedItem.SubInteger1
-                    veh.PearlescentColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.PrimaryColor = CType(mc.ModID, VehicleColor)
+                    veh.PearlescentColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.PrimaryColor = selectedItem.SubInteger1
-                    lastVehMemory.PearlescentColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.PrimaryColor = CType(mc.ModID, VehicleColor)
+                    lastVehMemory.PearlescentColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mPrimaryPearlescentColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.PearlescentColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.PearlescentColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.PearlescentColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.PearlescentColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf (sender Is mSecondaryChromeColor) Or (sender Is mSecondaryClassicColor) Or (sender Is mSecondaryMatteColor) Or (sender Is mSecondaryMetallicColor) Or (sender Is mSecondaryMetalsColor) Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.SecondaryColor = selectedItem.SubInteger1
+                    Dim mc As ModClass = selectedItem.Tag
+                    veh.SecondaryColor = CType(mc.ModID, VehicleColor)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger2)
-                    selectedItem.SubInteger2 = 0
-                    lastVehMemory.SecondaryColor = selectedItem.SubInteger1
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New ModClass(mc.ModID, 0)
+                    lastVehMemory.SecondaryColor = CType(mc.ModID, VehicleColor)
                     PlaySpeech("SHOP_SELL_COSMETICS")
                 End If
             ElseIf sender Is mNeonColor Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.NeonLightsColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
+                    Dim mc As RGBModClass = selectedItem.Tag
+                    veh.NeonLightsColor = mc.Color
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger4)
-                    selectedItem.SubInteger4 = 0
-                    lastVehMemory.NeonLightsColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New RGBModClass(mc.Color, 0)
+                    lastVehMemory.NeonLightsColor = mc.Color
                     PlaySpeech("")
                 End If
             ElseIf sender Is mTireSmoke Then
                 If selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    veh.TireSmokeColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
+                    Dim mc As RGBModClass = selectedItem.Tag
+                    veh.TireSmokeColor = mc.Color
                     veh.ToggleMod(VehicleToggleMod.TireSmoke, True)
                     selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Car)
                     selectedItem.SetRightLabel(Nothing)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger4)
-                    selectedItem.SubInteger4 = 0
-                    lastVehMemory.TireSmokeColor = Drawing.Color.FromArgb(selectedItem.SubInteger1, selectedItem.SubInteger2, selectedItem.SubInteger3)
+                    Game.Player.Money = (Game.Player.Money - mc.Price)
+                    selectedItem.Tag = New RGBModClass(mc.Color, 0)
+                    lastVehMemory.TireSmokeColor = mc.Color
                     PlaySpeech("")
                 End If
             End If
@@ -3733,7 +3739,7 @@ Module MenuHelper
             If sender Is gmBumper Then
                 If selectedItem Is giFBumper Then
                     Select Case veh.Model
-                        Case "monster3", "monster4", "monster5"
+                        Case "monster3", "monster4", "monster5", "openwheel1", "openwheel2", "formula", "formula2"
                             camera.MainCameraPosition = CameraPosition.Car
                         Case Else
                             If veh.HasBone("neon_f") Then
@@ -3875,85 +3881,85 @@ Module MenuHelper
                     isRepairing = True
                     veh.Repair()
                     veh.Wash()
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
                     RefreshMenus()
                 ElseIf selectedItem Is iUpgrade Then
                     Game.FadeScreenOut(1000)
                     Script.Wait(1000)
-                    Dim vehUp As Vehicle = World.CreateVehicle(LowriderUpgrade(veh.Model), veh.Position, veh.Heading)
-                    vehUp.IsPersistent = False
-                    vehUp.PrimaryColor = lastVehMemory.PrimaryColor
-                    vehUp.SecondaryColor = lastVehMemory.SecondaryColor
-                    vehUp.DashboardColor = lastVehMemory.LightsColor
-                    vehUp.PearlescentColor = lastVehMemory.PearlescentColor
-                    vehUp.TrimColor = lastVehMemory.TrimColor
-                    vehUp.RimColor = lastVehMemory.RimColor
-                    vehUp.NeonLightsColor = lastVehMemory.NeonLightsColor
-                    vehUp.TireSmokeColor = lastVehMemory.TireSmokeColor
-                    vehUp.InstallModKit()
-                    vehUp.WheelType = lastVehMemory.WheelType
-                    vehUp.SetMod(VehicleMod.Aerials, lastVehMemory.Aerials, False)
-                    vehUp.SetMod(VehicleMod.AirFilter, lastVehMemory.AirFilter, False)
-                    vehUp.SetMod(VehicleMod.ArchCover, lastVehMemory.ArchCover, False)
-                    vehUp.SetMod(VehicleMod.Armor, lastVehMemory.Armor, False)
-                    vehUp.SetMod(VehicleMod.BackWheels, lastVehMemory.BackWheels, False)
-                    vehUp.SetMod(VehicleMod.Brakes, lastVehMemory.Brakes, False)
-                    vehUp.SetMod(VehicleMod.ColumnShifterLevers, lastVehMemory.ColumnShifterLevers, False)
-                    vehUp.SetMod(VehicleMod.Dashboard, lastVehMemory.Dashboard, False)
-                    vehUp.SetMod(VehicleMod.DialDesign, lastVehMemory.DialDesign, False)
-                    vehUp.SetMod(VehicleMod.DoorSpeakers, lastVehMemory.DoorSpeakers, False)
-                    vehUp.SetMod(VehicleMod.Engine, lastVehMemory.Engine, False)
-                    vehUp.SetMod(VehicleMod.EngineBlock, lastVehMemory.EngineBlock, False)
-                    vehUp.SetMod(VehicleMod.Exhaust, lastVehMemory.Exhaust, False)
-                    vehUp.SetMod(VehicleMod.Fender, lastVehMemory.Fender, False)
-                    vehUp.SetMod(VehicleMod.Frame, lastVehMemory.Frame, False)
-                    vehUp.SetMod(VehicleMod.FrontBumper, lastVehMemory.FrontBumper, False)
-                    vehUp.SetMod(VehicleMod.FrontWheels, lastVehMemory.FrontWheels, False)
-                    vehUp.SetMod(VehicleMod.Grille, lastVehMemory.Grille, False)
-                    vehUp.SetMod(VehicleMod.Hood, lastVehMemory.Hood, False)
-                    vehUp.SetMod(VehicleMod.Horns, lastVehMemory.Horns, False)
-                    vehUp.SetMod(VehicleMod.Hydraulics, lastVehMemory.Hydraulics, False)
-                    vehUp.SetMod(VehicleMod.Livery, lastVehMemory.Livery, False)
-                    vehUp.SetLivery2(lastVehMemory.Livery2)
-                    vehUp.SetMod(VehicleMod.Ornaments, lastVehMemory.Ornaments, False)
-                    vehUp.SetMod(VehicleMod.Plaques, lastVehMemory.Plaques, False)
-                    vehUp.SetMod(VehicleMod.PlateHolder, lastVehMemory.PlateHolder, False)
-                    vehUp.SetMod(VehicleMod.RearBumper, lastVehMemory.RearBumper, False)
-                    vehUp.SetMod(VehicleMod.RightFender, lastVehMemory.RightFender, False)
-                    vehUp.SetMod(VehicleMod.Roof, lastVehMemory.Roof, False)
-                    vehUp.SetMod(VehicleMod.Seats, lastVehMemory.Seats, False)
-                    vehUp.SetMod(VehicleMod.SideSkirt, lastVehMemory.SideSkirt, False)
-                    vehUp.SetMod(VehicleMod.Speakers, lastVehMemory.Speakers, False)
-                    vehUp.SetMod(VehicleMod.Spoilers, lastVehMemory.Spoilers, False)
-                    vehUp.SetMod(VehicleMod.SteeringWheels, lastVehMemory.SteeringWheels, False)
-                    vehUp.SetMod(VehicleMod.Struts, lastVehMemory.Struts, False)
-                    vehUp.SetMod(VehicleMod.Suspension, lastVehMemory.Suspension, False)
-                    vehUp.SetMod(VehicleMod.Tank, lastVehMemory.Tank, False)
-                    vehUp.SetMod(VehicleMod.Transmission, lastVehMemory.Transmission, False)
-                    vehUp.SetMod(VehicleMod.Trim, lastVehMemory.Trim, False)
-                    vehUp.SetMod(VehicleMod.TrimDesign, lastVehMemory.TrimDesign, False)
-                    vehUp.SetMod(VehicleMod.Trunk, lastVehMemory.Trunk, False)
-                    vehUp.SetMod(VehicleMod.VanityPlates, lastVehMemory.VanityPlates, False)
-                    vehUp.SetMod(VehicleMod.Windows, lastVehMemory.Windows, False)
-                    vehUp.ToggleMod(VehicleToggleMod.TireSmoke, True)
-                    vehUp.ToggleMod(VehicleToggleMod.Turbo, lastVehMemory.Turbo)
-                    vehUp.ToggleMod(VehicleToggleMod.XenonHeadlights, lastVehMemory.Headlights)
-                    vehUp.SetXenonHeadlightsColor(lastVehMemory.HeadlightsColor, vehUp.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
-                    vehUp.NumberPlateType = lastVehMemory.NumberPlate
-                    vehUp.NumberPlate = lastVehMemory.PlateNumbers
-                    vehUp.CanTiresBurst = lastVehMemory.BulletProofTires
-                    If IsNitroModInstalled() Then vehUp.SetBool(nitroMod, lastVehMemory.Nitro)
+                    Dim newVeh As Vehicle = World.CreateVehicle(LowriderUpgrade(veh.Model), veh.Position, veh.Heading)
+                    newVeh.IsPersistent = False
+                    newVeh.PrimaryColor = lastVehMemory.PrimaryColor
+                    newVeh.SecondaryColor = lastVehMemory.SecondaryColor
+                    newVeh.DashboardColor = lastVehMemory.LightsColor
+                    newVeh.PearlescentColor = lastVehMemory.PearlescentColor
+                    newVeh.TrimColor = lastVehMemory.TrimColor
+                    newVeh.RimColor = lastVehMemory.RimColor
+                    newVeh.NeonLightsColor = lastVehMemory.NeonLightsColor
+                    newVeh.TireSmokeColor = lastVehMemory.TireSmokeColor
+                    newVeh.InstallModKit()
+                    newVeh.WheelType = lastVehMemory.WheelType
+                    newVeh.SetMod(VehicleMod.Aerials, lastVehMemory.Aerials, False)
+                    newVeh.SetMod(VehicleMod.AirFilter, lastVehMemory.AirFilter, False)
+                    newVeh.SetMod(VehicleMod.ArchCover, lastVehMemory.ArchCover, False)
+                    newVeh.SetMod(VehicleMod.Armor, lastVehMemory.Armor, False)
+                    newVeh.SetMod(VehicleMod.BackWheels, lastVehMemory.BackWheels, False)
+                    newVeh.SetMod(VehicleMod.Brakes, lastVehMemory.Brakes, False)
+                    newVeh.SetMod(VehicleMod.ColumnShifterLevers, lastVehMemory.ColumnShifterLevers, False)
+                    newVeh.SetMod(VehicleMod.Dashboard, lastVehMemory.Dashboard, False)
+                    newVeh.SetMod(VehicleMod.DialDesign, lastVehMemory.DialDesign, False)
+                    newVeh.SetMod(VehicleMod.DoorSpeakers, lastVehMemory.DoorSpeakers, False)
+                    newVeh.SetMod(VehicleMod.Engine, lastVehMemory.Engine, False)
+                    newVeh.SetMod(VehicleMod.EngineBlock, lastVehMemory.EngineBlock, False)
+                    newVeh.SetMod(VehicleMod.Exhaust, lastVehMemory.Exhaust, False)
+                    newVeh.SetMod(VehicleMod.Fender, lastVehMemory.Fender, False)
+                    newVeh.SetMod(VehicleMod.Frame, lastVehMemory.Frame, False)
+                    newVeh.SetMod(VehicleMod.FrontBumper, lastVehMemory.FrontBumper, False)
+                    newVeh.SetMod(VehicleMod.FrontWheels, lastVehMemory.FrontWheels, False)
+                    newVeh.SetMod(VehicleMod.Grille, lastVehMemory.Grille, False)
+                    newVeh.SetMod(VehicleMod.Hood, lastVehMemory.Hood, False)
+                    newVeh.SetMod(VehicleMod.Horns, lastVehMemory.Horns, False)
+                    newVeh.SetMod(VehicleMod.Hydraulics, lastVehMemory.Hydraulics, False)
+                    newVeh.SetMod(VehicleMod.Livery, lastVehMemory.Livery, False)
+                    newVeh.SetLivery2(lastVehMemory.Livery2)
+                    newVeh.SetMod(VehicleMod.Ornaments, lastVehMemory.Ornaments, False)
+                    newVeh.SetMod(VehicleMod.Plaques, lastVehMemory.Plaques, False)
+                    newVeh.SetMod(VehicleMod.PlateHolder, lastVehMemory.PlateHolder, False)
+                    newVeh.SetMod(VehicleMod.RearBumper, lastVehMemory.RearBumper, False)
+                    newVeh.SetMod(VehicleMod.RightFender, lastVehMemory.RightFender, False)
+                    newVeh.SetMod(VehicleMod.Roof, lastVehMemory.Roof, False)
+                    newVeh.SetMod(VehicleMod.Seats, lastVehMemory.Seats, False)
+                    newVeh.SetMod(VehicleMod.SideSkirt, lastVehMemory.SideSkirt, False)
+                    newVeh.SetMod(VehicleMod.Speakers, lastVehMemory.Speakers, False)
+                    newVeh.SetMod(VehicleMod.Spoilers, lastVehMemory.Spoilers, False)
+                    newVeh.SetMod(VehicleMod.SteeringWheels, lastVehMemory.SteeringWheels, False)
+                    newVeh.SetMod(VehicleMod.Struts, lastVehMemory.Struts, False)
+                    newVeh.SetMod(VehicleMod.Suspension, lastVehMemory.Suspension, False)
+                    newVeh.SetMod(VehicleMod.Tank, lastVehMemory.Tank, False)
+                    newVeh.SetMod(VehicleMod.Transmission, lastVehMemory.Transmission, False)
+                    newVeh.SetMod(VehicleMod.Trim, lastVehMemory.Trim, False)
+                    newVeh.SetMod(VehicleMod.TrimDesign, lastVehMemory.TrimDesign, False)
+                    newVeh.SetMod(VehicleMod.Trunk, lastVehMemory.Trunk, False)
+                    newVeh.SetMod(VehicleMod.VanityPlates, lastVehMemory.VanityPlates, False)
+                    newVeh.SetMod(VehicleMod.Windows, lastVehMemory.Windows, False)
+                    newVeh.ToggleMod(VehicleToggleMod.TireSmoke, True)
+                    newVeh.ToggleMod(VehicleToggleMod.Turbo, lastVehMemory.Turbo)
+                    newVeh.ToggleMod(VehicleToggleMod.XenonHeadlights, lastVehMemory.Headlights)
+                    newVeh.SetXenonHeadlightsColor(lastVehMemory.HeadlightsColor, newVeh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
+                    newVeh.NumberPlateType = lastVehMemory.NumberPlate
+                    newVeh.NumberPlate = lastVehMemory.PlateNumbers
+                    newVeh.CanTiresBurst = lastVehMemory.BulletProofTires
+                    If IsNitroModInstalled() Then newVeh.SetInt(nitroMod, lastVehMemory.Nitro)
                     veh.Delete()
-                    ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
-                    veh = vehUp
-                    veh.InstallModKit()
+                    ply.Task.WarpIntoVehicle(newVeh, VehicleSeat.Driver)
+                    veh = newVeh
+                    newVeh.InstallModKit()
                     MainMenu.MenuItems.Remove(selectedItem)
                     isRepairing = True
                     RefreshMenus()
-                    camera.RepositionFor(veh)
+                    camera.RepositionFor(newVeh)
                     Script.Wait(1000)
                     Game.FadeScreenIn(1000)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                     PlaySpeech("LR_UPGRADE_SUPERMOD")
@@ -3961,91 +3967,93 @@ Module MenuHelper
                     Game.FadeScreenOut(1000)
                     Script.Wait(1000)
                     Dim upgrade2 As Tuple(Of String, Integer) = veh.DisplayName.GetUpgradeModVehicleInfo
-                    Dim vehUp As Vehicle = World.CreateVehicle(upgrade2.Item1, veh.Position, veh.Heading)
-                    vehUp.IsPersistent = False
-                    vehUp.PrimaryColor = lastVehMemory.PrimaryColor
-                    vehUp.SecondaryColor = lastVehMemory.SecondaryColor
-                    vehUp.DashboardColor = lastVehMemory.LightsColor
-                    vehUp.PearlescentColor = lastVehMemory.PearlescentColor
-                    vehUp.TrimColor = lastVehMemory.TrimColor
-                    vehUp.RimColor = lastVehMemory.RimColor
-                    vehUp.NeonLightsColor = lastVehMemory.NeonLightsColor
-                    vehUp.TireSmokeColor = lastVehMemory.TireSmokeColor
-                    vehUp.InstallModKit()
-                    vehUp.WheelType = lastVehMemory.WheelType
-                    vehUp.SetMod(VehicleMod.Aerials, lastVehMemory.Aerials, False)
-                    vehUp.SetMod(VehicleMod.AirFilter, lastVehMemory.AirFilter, False)
-                    vehUp.SetMod(VehicleMod.ArchCover, lastVehMemory.ArchCover, False)
-                    vehUp.SetMod(VehicleMod.Armor, lastVehMemory.Armor, False)
-                    vehUp.SetMod(VehicleMod.BackWheels, lastVehMemory.BackWheels, False)
-                    vehUp.SetMod(VehicleMod.Brakes, lastVehMemory.Brakes, False)
-                    vehUp.SetMod(VehicleMod.ColumnShifterLevers, lastVehMemory.ColumnShifterLevers, False)
-                    vehUp.SetMod(VehicleMod.Dashboard, lastVehMemory.Dashboard, False)
-                    vehUp.SetMod(VehicleMod.DialDesign, lastVehMemory.DialDesign, False)
-                    vehUp.SetMod(VehicleMod.DoorSpeakers, lastVehMemory.DoorSpeakers, False)
-                    vehUp.SetMod(VehicleMod.Engine, lastVehMemory.Engine, False)
-                    vehUp.SetMod(VehicleMod.EngineBlock, lastVehMemory.EngineBlock, False)
-                    vehUp.SetMod(VehicleMod.Exhaust, lastVehMemory.Exhaust, False)
-                    vehUp.SetMod(VehicleMod.Fender, lastVehMemory.Fender, False)
-                    vehUp.SetMod(VehicleMod.Frame, lastVehMemory.Frame, False)
-                    vehUp.SetMod(VehicleMod.FrontBumper, lastVehMemory.FrontBumper, False)
-                    vehUp.SetMod(VehicleMod.FrontWheels, lastVehMemory.FrontWheels, False)
-                    vehUp.SetMod(VehicleMod.Grille, lastVehMemory.Grille, False)
-                    vehUp.SetMod(VehicleMod.Hood, lastVehMemory.Hood, False)
-                    vehUp.SetMod(VehicleMod.Horns, lastVehMemory.Horns, False)
-                    vehUp.SetMod(VehicleMod.Hydraulics, lastVehMemory.Hydraulics, False)
-                    vehUp.SetMod(VehicleMod.Livery, lastVehMemory.Livery, False)
-                    vehUp.SetLivery2(lastVehMemory.Livery2)
-                    vehUp.SetMod(VehicleMod.Ornaments, lastVehMemory.Ornaments, False)
-                    vehUp.SetMod(VehicleMod.Plaques, lastVehMemory.Plaques, False)
-                    vehUp.SetMod(VehicleMod.PlateHolder, lastVehMemory.PlateHolder, False)
-                    vehUp.SetMod(VehicleMod.RearBumper, lastVehMemory.RearBumper, False)
-                    vehUp.SetMod(VehicleMod.RightFender, lastVehMemory.RightFender, False)
-                    vehUp.SetMod(VehicleMod.Roof, lastVehMemory.Roof, False)
-                    vehUp.SetMod(VehicleMod.Seats, lastVehMemory.Seats, False)
-                    vehUp.SetMod(VehicleMod.SideSkirt, lastVehMemory.SideSkirt, False)
-                    vehUp.SetMod(VehicleMod.Speakers, lastVehMemory.Speakers, False)
-                    vehUp.SetMod(VehicleMod.Spoilers, lastVehMemory.Spoilers, False)
-                    vehUp.SetMod(VehicleMod.SteeringWheels, lastVehMemory.SteeringWheels, False)
-                    vehUp.SetMod(VehicleMod.Struts, lastVehMemory.Struts, False)
-                    vehUp.SetMod(VehicleMod.Suspension, lastVehMemory.Suspension, False)
-                    vehUp.SetMod(VehicleMod.Tank, lastVehMemory.Tank, False)
-                    vehUp.SetMod(VehicleMod.Transmission, lastVehMemory.Transmission, False)
-                    vehUp.SetMod(VehicleMod.Trim, lastVehMemory.Trim, False)
-                    vehUp.SetMod(VehicleMod.TrimDesign, lastVehMemory.TrimDesign, False)
-                    vehUp.SetMod(VehicleMod.Trunk, lastVehMemory.Trunk, False)
-                    vehUp.SetMod(VehicleMod.VanityPlates, lastVehMemory.VanityPlates, False)
-                    vehUp.SetMod(VehicleMod.Windows, lastVehMemory.Windows, False)
-                    vehUp.ToggleMod(VehicleToggleMod.TireSmoke, True)
-                    vehUp.ToggleMod(VehicleToggleMod.Turbo, lastVehMemory.Turbo)
-                    vehUp.ToggleMod(VehicleToggleMod.XenonHeadlights, lastVehMemory.Headlights)
-                    vehUp.SetXenonHeadlightsColor(lastVehMemory.HeadlightsColor, vehUp.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
-                    vehUp.NumberPlateType = lastVehMemory.NumberPlate
-                    vehUp.NumberPlate = lastVehMemory.PlateNumbers
-                    vehUp.CanTiresBurst = lastVehMemory.BulletProofTires
-                    If IsNitroModInstalled() Then vehUp.SetBool(nitroMod, lastVehMemory.Nitro)
+                    Dim newVeh As Vehicle = World.CreateVehicle(upgrade2.Item1, veh.Position, veh.Heading)
+                    newVeh.IsPersistent = False
+                    newVeh.PrimaryColor = lastVehMemory.PrimaryColor
+                    newVeh.SecondaryColor = lastVehMemory.SecondaryColor
+                    newVeh.DashboardColor = lastVehMemory.LightsColor
+                    newVeh.PearlescentColor = lastVehMemory.PearlescentColor
+                    newVeh.TrimColor = lastVehMemory.TrimColor
+                    newVeh.RimColor = lastVehMemory.RimColor
+                    newVeh.NeonLightsColor = lastVehMemory.NeonLightsColor
+                    newVeh.TireSmokeColor = lastVehMemory.TireSmokeColor
+                    newVeh.InstallModKit()
+                    newVeh.WheelType = lastVehMemory.WheelType
+                    newVeh.SetMod(VehicleMod.Aerials, lastVehMemory.Aerials, False)
+                    newVeh.SetMod(VehicleMod.AirFilter, lastVehMemory.AirFilter, False)
+                    newVeh.SetMod(VehicleMod.ArchCover, lastVehMemory.ArchCover, False)
+                    newVeh.SetMod(VehicleMod.Armor, lastVehMemory.Armor, False)
+                    newVeh.SetMod(VehicleMod.BackWheels, lastVehMemory.BackWheels, False)
+                    newVeh.SetMod(VehicleMod.Brakes, lastVehMemory.Brakes, False)
+                    newVeh.SetMod(VehicleMod.ColumnShifterLevers, lastVehMemory.ColumnShifterLevers, False)
+                    newVeh.SetMod(VehicleMod.Dashboard, lastVehMemory.Dashboard, False)
+                    newVeh.SetMod(VehicleMod.DialDesign, lastVehMemory.DialDesign, False)
+                    newVeh.SetMod(VehicleMod.DoorSpeakers, lastVehMemory.DoorSpeakers, False)
+                    newVeh.SetMod(VehicleMod.Engine, lastVehMemory.Engine, False)
+                    newVeh.SetMod(VehicleMod.EngineBlock, lastVehMemory.EngineBlock, False)
+                    newVeh.SetMod(VehicleMod.Exhaust, lastVehMemory.Exhaust, False)
+                    newVeh.SetMod(VehicleMod.Fender, lastVehMemory.Fender, False)
+                    newVeh.SetMod(VehicleMod.Frame, lastVehMemory.Frame, False)
+                    newVeh.SetMod(VehicleMod.FrontBumper, lastVehMemory.FrontBumper, False)
+                    newVeh.SetMod(VehicleMod.FrontWheels, lastVehMemory.FrontWheels, False)
+                    newVeh.SetMod(VehicleMod.Grille, lastVehMemory.Grille, False)
+                    newVeh.SetMod(VehicleMod.Hood, lastVehMemory.Hood, False)
+                    newVeh.SetMod(VehicleMod.Horns, lastVehMemory.Horns, False)
+                    newVeh.SetMod(VehicleMod.Hydraulics, lastVehMemory.Hydraulics, False)
+                    newVeh.SetMod(VehicleMod.Livery, lastVehMemory.Livery, False)
+                    newVeh.SetLivery2(lastVehMemory.Livery2)
+                    newVeh.SetMod(VehicleMod.Ornaments, lastVehMemory.Ornaments, False)
+                    newVeh.SetMod(VehicleMod.Plaques, lastVehMemory.Plaques, False)
+                    newVeh.SetMod(VehicleMod.PlateHolder, lastVehMemory.PlateHolder, False)
+                    newVeh.SetMod(VehicleMod.RearBumper, lastVehMemory.RearBumper, False)
+                    newVeh.SetMod(VehicleMod.RightFender, lastVehMemory.RightFender, False)
+                    newVeh.SetMod(VehicleMod.Roof, lastVehMemory.Roof, False)
+                    newVeh.SetMod(VehicleMod.Seats, lastVehMemory.Seats, False)
+                    newVeh.SetMod(VehicleMod.SideSkirt, lastVehMemory.SideSkirt, False)
+                    newVeh.SetMod(VehicleMod.Speakers, lastVehMemory.Speakers, False)
+                    newVeh.SetMod(VehicleMod.Spoilers, lastVehMemory.Spoilers, False)
+                    newVeh.SetMod(VehicleMod.SteeringWheels, lastVehMemory.SteeringWheels, False)
+                    newVeh.SetMod(VehicleMod.Struts, lastVehMemory.Struts, False)
+                    newVeh.SetMod(VehicleMod.Suspension, lastVehMemory.Suspension, False)
+                    newVeh.SetMod(VehicleMod.Tank, lastVehMemory.Tank, False)
+                    newVeh.SetMod(VehicleMod.Transmission, lastVehMemory.Transmission, False)
+                    newVeh.SetMod(VehicleMod.Trim, lastVehMemory.Trim, False)
+                    newVeh.SetMod(VehicleMod.TrimDesign, lastVehMemory.TrimDesign, False)
+                    newVeh.SetMod(VehicleMod.Trunk, lastVehMemory.Trunk, False)
+                    newVeh.SetMod(VehicleMod.VanityPlates, lastVehMemory.VanityPlates, False)
+                    newVeh.SetMod(VehicleMod.Windows, lastVehMemory.Windows, False)
+                    newVeh.ToggleMod(VehicleToggleMod.TireSmoke, True)
+                    newVeh.ToggleMod(VehicleToggleMod.Turbo, lastVehMemory.Turbo)
+                    newVeh.ToggleMod(VehicleToggleMod.XenonHeadlights, lastVehMemory.Headlights)
+                    newVeh.SetXenonHeadlightsColor(lastVehMemory.HeadlightsColor, newVeh.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
+                    newVeh.NumberPlateType = lastVehMemory.NumberPlate
+                    newVeh.NumberPlate = lastVehMemory.PlateNumbers
+                    newVeh.CanTiresBurst = lastVehMemory.BulletProofTires
+                    If IsNitroModInstalled() Then newVeh.SetInt(nitroMod, lastVehMemory.Nitro)
                     veh.Delete()
-                    ply.Task.WarpIntoVehicle(veh, VehicleSeat.Driver)
-                    veh = veh
-                    veh.InstallModKit()
+                    ply.Task.WarpIntoVehicle(newVeh, VehicleSeat.Driver)
+                    veh = newVeh
+                    newVeh.InstallModKit()
                     MainMenu.MenuItems.Remove(selectedItem)
                     isRepairing = True
                     RefreshMenus()
-                    camera.RepositionFor(veh)
+                    camera.RepositionFor(newVeh)
                     Script.Wait(1000)
                     Game.FadeScreenIn(1000)
-                    Game.Player.Money = (Game.Player.Money - selectedItem.SubInteger1)
+                    Game.Player.Money = (Game.Player.Money - CInt(selectedItem.Tag))
                     Native.Function.Call(Hash._START_SCREEN_EFFECT, "MP_corona_switch_supermod", 0, 1)
                     Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "Lowrider_Upgrade", "Lowrider_Super_Mod_Garage_Sounds", 1)
                     PlaySpeech("LR_UPGRADE_SUPERMOD")
                 ElseIf selectedItem Is iUpgradeAW Then
                     Dim sitem = mUpgradeAW.MenuItems.First
-                    arenaVehImage = sitem.SubString2
+                    arenaVehImage = CType(sitem.Tag, ArenaWarVehicle).Image
                 ElseIf selectedItem Is giEngine Then
                     Select Case veh.Model
                         Case "alpha"
                             veh.OpenDoor(VehicleDoor.Hood, False, False)
                             camera.MainCameraPosition = CameraPosition.Hood
+                        Case "openwheel1", "openwheel2", "formula", "formula2"
+                            camera.MainCameraPosition = CameraPosition.RearEngine
                         Case Else
                             If Not veh.ClassType = VehicleClass.Motorcycles Or veh.Model = "blazer4" Then
                                 HoodCamera(True)
@@ -4194,7 +4202,7 @@ Module MenuHelper
             veh.SetMod(VehicleMod.Brakes, lastVehMemory.Brakes, False)
             veh.SetMod(VehicleMod.Transmission, lastVehMemory.Transmission, False)
             veh.SetMod(VehicleMod.Engine, lastVehMemory.Engine, False)
-            If IsNitroModInstalled() Then veh.SetBool(nitroMod, lastVehMemory.Nitro)
+            If IsNitroModInstalled() Then veh.SetInt(nitroMod, lastVehMemory.Nitro)
 
             'Mods
             veh.SetMod(VehicleMod.FrontBumper, lastVehMemory.FrontBumper, False)

@@ -50,6 +50,12 @@ Public Class Showroom
                 If ply.IsInVehicle Then
                     If ply.CurrentVehicle.GetBool(mosleyMod) Then ply.CurrentVehicle.SetBool(mosleyMod, False)
                 End If
+
+                If isExiting Then
+                    Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                    Game.DisableAllControlsThisFrame(0)
+                    'SuspendKeys()
+                End If
             Else
                 DeletePed(pdmPed)
                 DeleteVehicle(bike1)
